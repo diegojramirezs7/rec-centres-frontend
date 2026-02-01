@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Find Your Community Centre | Third Places Vancouver</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#8b7360",
+              "background-light": "#fdfcf9",
+              "background-dark": "#121212",
+              "surface-light": "#ffffff",
+              "surface-dark": "#1e1e1e",
+            },
+            fontFamily: {
+              display: ["Playfair Display", "serif"],
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          @apply font-sans antialiased bg-background-light dark:bg-background-dark text-stone-800 dark:text-stone-200;
+        }
+        .material-symbols-outlined {
+          font-variation-settings:
+            "FILL" 0,
+            "wght" 300,
+            "GRAD" 0,
+            "opsz" 24;
+        }
+      }
+      .list-item-hover {
+        transition: all 0.3s ease;
+      }
+      .list-item-hover:hover {
+        background-color: rgba(139, 115, 96, 0.03);
+      }
+      .dark .list-item-hover:hover {
+        background-color: rgba(139, 115, 96, 0.08);
+      }
+      .sidebar-link-active {
+        @apply text-primary font-medium border-l-2 border-primary pl-4 -ml-4;
+      }
+      .sidebar-link {
+        @apply text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 transition-colors py-1 block;
+      }
+    </style>
+  </head>
+  <body>
+    <header
+      class="bg-white/70 dark:bg-surface-dark/70 backdrop-blur-md sticky top-0 z-50 border-b border-stone-100 dark:border-stone-800"
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-center h-20">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-9 h-9 rounded-full bg-primary flex items-center justify-center"
+            >
+              <span class="material-symbols-outlined text-white text-lg"
+                >home_work</span
+              >
+            </div>
+            <span
+              class="font-display italic text-xl tracking-tight text-stone-900 dark:text-white"
+              >Third Places Vancouver</span
+            >
+          </div>
+          <nav class="flex items-center space-x-8">
+            <a
+              class="text-xs uppercase tracking-widest font-semibold text-stone-500 hover:text-primary transition-colors"
+              href="#"
+              >About</a
+            >
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-6 py-12">
+      <div
+        class="flex flex-col md:flex-row justify-between items-end gap-8 mb-12"
+      >
+        <div class="max-w-2xl">
+          <h1
+            class="font-display text-4xl md:text-5xl font-normal text-stone-900 dark:text-white mb-4"
+          >
+            Find Your Community Centre
+          </h1>
+          <p class="text-stone-500 dark:text-stone-400 text-lg">
+            Discover local spaces to connect, learn, and grow across Vancouver.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button
+            class="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full text-sm font-medium hover:bg-stone-700 transition-all shadow-sm"
+          >
+            <span class="material-symbols-outlined text-lg">near_me</span>
+            Find Nearest Centre
+          </button>
+          <div
+            class="inline-flex p-1 bg-stone-100 dark:bg-stone-900 rounded-full border border-stone-200 dark:border-stone-800"
+          >
+            <button
+              class="px-6 py-2 rounded-full bg-white dark:bg-stone-800 text-stone-900 dark:text-white text-xs font-bold uppercase tracking-wider shadow-sm ring-1 ring-stone-200/50 dark:ring-stone-700/50"
+            >
+              By Centre
+            </button>
+            <button
+              class="px-6 py-2 rounded-full text-stone-500 dark:text-stone-400 text-xs font-bold uppercase tracking-wider hover:text-stone-900 dark:hover:text-stone-200"
+            >
+              By Activity
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-12">
+        <aside class="w-full lg:w-64 flex-shrink-0">
+          <div class="sticky top-32">
+            <div class="mb-10">
+              <h3
+                class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400 mb-6"
+              >
+                Search
+              </h3>
+              <div class="relative">
+                <span
+                  class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-stone-400 text-xl"
+                  >search</span
+                >
+                <input
+                  class="w-full pl-8 pr-0 py-2 bg-transparent border-0 border-b border-stone-200 dark:border-stone-800 focus:ring-0 focus:border-primary placeholder-stone-300 dark:placeholder-stone-600 text-sm"
+                  placeholder="Search centres..."
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="mb-10">
+              <h3
+                class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400 mb-6"
+              >
+                Neighbourhoods
+              </h3>
+              <nav class="space-y-3">
+                <a class="sidebar-link sidebar-link-active" href="#"
+                  >All Areas</a
+                >
+                <a class="sidebar-link" href="#">Kitsilano</a>
+                <a class="sidebar-link" href="#">West End</a>
+                <a class="sidebar-link" href="#">Mount Pleasant</a>
+                <a class="sidebar-link" href="#">Grandview-Woodland</a>
+                <a class="sidebar-link" href="#">Fairview</a>
+                <a class="sidebar-link" href="#">Sunset</a>
+                <a class="sidebar-link" href="#">Killarney</a>
+                <a class="sidebar-link" href="#">Renfrew-Collingwood</a>
+              </nav>
+            </div>
+          </div>
+        </aside>
+        <div class="flex-grow">
+          <div class="space-y-0">
+            <div
+              class="list-item-hover group py-10 border-b border-stone-100 dark:border-stone-800 cursor-pointer flex flex-col md:flex-row md:items-center justify-between px-6 -mx-6"
+            >
+              <div class="flex-grow">
+                <div class="flex items-center gap-3 mb-2">
+                  <span
+                    class="text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 bg-stone-100 dark:bg-stone-900 text-stone-500 dark:text-stone-400 rounded"
+                    >Mount Pleasant</span
+                  >
+                  <span
+                    class="text-[10px] uppercase tracking-widest font-bold text-stone-400"
+                    >48 activities available</span
+                  >
+                </div>
+                <h2
+                  class="font-display text-3xl text-stone-900 dark:text-white mb-2"
+                >
+                  Mount Pleasant Community Centre
+                </h2>
+                <p class="text-stone-400 dark:text-stone-500 text-sm mb-4">
+                  1 Kingsway, Vancouver, BC V5T 3H7
+                </p>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span
+                    class="text-xs bg-stone-50 dark:bg-stone-900/50 text-stone-600 dark:text-stone-300 px-3 py-1 rounded-full border border-stone-100 dark:border-stone-800"
+                    >Yoga (2pm)</span
+                  >
+                  <span
+                    class="text-xs bg-stone-50 dark:bg-stone-900/50 text-stone-600 dark:text-stone-300 px-3 py-1 rounded-full border border-stone-100 dark:border-stone-800"
+                    >Open Gym</span
+                  >
+                  <span
+                    class="text-xs bg-stone-50 dark:bg-stone-900/50 text-stone-600 dark:text-stone-300 px-3 py-1 rounded-full border border-stone-100 dark:border-stone-800"
+                    >Pottery Lab</span
+                  >
+                </div>
+              </div>
+              <div class="mt-6 md:mt-0 md:ml-8 flex items-center gap-4">
+                <span
+                  class="material-symbols-outlined text-stone-300 group-hover:text-primary transition-colors text-3xl"
+                  >arrow_forward_ios</span
+                >
+              </div>
+            </div>
+            <div
+              class="list-item-hover group py-10 border-b border-stone-100 dark:border-stone-800 cursor-pointer flex flex-col md:flex-row md:items-center justify-between px-6 -mx-6"
+            >
+              <div class="flex-grow">
+                <div class="flex items-center gap-3 mb-2">
+                  <span
+                    class="text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 bg-stone-100 dark:bg-stone-900 text-stone-500 dark:text-stone-400 rounded"
+                    >Kitsilano</span
+                  >
+                  <span
+                    class="text-[10px] uppercase tracking-widest font-bold text-stone-400"
+                    >52 activities available</span
+                  >
+                </div>
+                <h2
+                  class="font-display text-3xl text-stone-900 dark:text-white mb-2"
+                >
+                  Kitsilano Community Centre
+                </h2>
+                <p class="text-stone-400 dark:text-stone-500 text-sm mb-4">
+                  2690 Larch St, Vancouver, BC V6K 4K9
+                </p>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span
+                    class="text-xs bg-stone-50 dark:bg-stone-900/50 text-stone-600 dark:text-stone-300 px-3 py-1 rounded-full border border-stone-100 dark:border-stone-800"
+                    >Pickleball</span
+                  >
+                  <span
+                    class="text-xs bg-stone-50 dark:bg-stone-900/50 text-stone-600 dark:text-stone-300 px-3 py-1 rounded-full border border-stone-100 dark:border-stone-800"
+                    >Preschool Play</span
+                  >
+                </div>
+              </div>
+              <div class="mt-6 md:mt-0 md:ml-8">
+                <span
+                  class="material-symbols-outlined text-stone-300 group-hover:text-primary transition-colors text-3xl"
+                  >arrow_forward_ios</span
+                >
+              </div>
+            </div>
+            <div
+              class="list-item-hover group py-10 border-b border-stone-100 dark:border-stone-800 cursor-pointer flex flex-col md:flex-row md:items-center justify-between px-6 -mx-6"
+            >
+              <div class="flex-grow">
+                <div class="flex items-center gap-3 mb-2">
+                  <span
+                    class="text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 bg-stone-100 dark:bg-stone-900 text-stone-500 dark:text-stone-400 rounded"
+                    >West End</span
+                  >
+                  <span
+                    class="text-[10px] uppercase tracking-widest font-bold text-stone-400"
+                    >35 activities available</span
+                  >
+                </div>
+                <h2
+                  class="font-display text-3xl text-stone-900 dark:text-white mb-2"
+                >
+                  West End Community Centre
+                </h2>
+                <p class="text-stone-400 dark:text-stone-500 text-sm mb-4">
+                  870 Denman St, Vancouver, BC V6G 2L8
+                </p>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span
+                    class="text-xs bg-stone-50 dark:bg-stone-900/50 text-stone-600 dark:text-stone-300 px-3 py-1 rounded-full border border-stone-100 dark:border-stone-800"
+                    >English Corner</span
+                  >
+                  <span
+                    class="text-xs bg-stone-50 dark:bg-stone-900/50 text-stone-600 dark:text-stone-300 px-3 py-1 rounded-full border border-stone-100 dark:border-stone-800"
+                    >Basketball</span
+                  >
+                </div>
+              </div>
+              <div class="mt-6 md:mt-0 md:ml-8">
+                <span
+                  class="material-symbols-outlined text-stone-300 group-hover:text-primary transition-colors text-3xl"
+                  >arrow_forward_ios</span
+                >
+              </div>
+            </div>
+            <div
+              class="list-item-hover group py-10 border-b border-stone-100 dark:border-stone-800 cursor-pointer flex flex-col md:flex-row md:items-center justify-between px-6 -mx-6"
+            >
+              <div class="flex-grow">
+                <div class="flex items-center gap-3 mb-2">
+                  <span
+                    class="text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 bg-stone-100 dark:bg-stone-900 text-stone-500 dark:text-stone-400 rounded"
+                    >East Vancouver</span
+                  >
+                  <span
+                    class="text-[10px] uppercase tracking-widest font-bold text-stone-400"
+                    >61 activities available</span
+                  >
+                </div>
+                <h2
+                  class="font-display text-3xl text-stone-900 dark:text-white mb-2"
+                >
+                  Trout Lake Community Centre
+                </h2>
+                <p class="text-stone-400 dark:text-stone-500 text-sm mb-4">
+                  3360 Victoria Dr, Vancouver, BC V5N 4M4
+                </p>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span
+                    class="text-xs bg-stone-50 dark:bg-stone-900/50 text-stone-600 dark:text-stone-300 px-3 py-1 rounded-full border border-stone-100 dark:border-stone-800"
+                    >Skating</span
+                  >
+                  <span
+                    class="text-xs bg-stone-50 dark:bg-stone-900/50 text-stone-600 dark:text-stone-300 px-3 py-1 rounded-full border border-stone-100 dark:border-stone-800"
+                    >Farmer's Market Info</span
+                  >
+                </div>
+              </div>
+              <div class="mt-6 md:mt-0 md:ml-8">
+                <span
+                  class="material-symbols-outlined text-stone-300 group-hover:text-primary transition-colors text-3xl"
+                  >arrow_forward_ios</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
