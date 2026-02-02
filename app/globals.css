@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fdfcf9;
+  --background: #F8F5EE;
   --foreground: #292524;
 }
 
@@ -42,6 +42,25 @@ body {
   .list-item-hover:hover {
     background-color: rgba(139, 115, 96, 0.08);
   }
+}
+
+/* Activity card hover effect */
+.activity-card {
+  transition: all 0.3s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Hide scrollbar for horizontal scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Sidebar link styles */
@@ -98,5 +117,25 @@ body {
 
   *::-webkit-scrollbar-thumb:hover {
     background-color: #525252;
+  }
+}
+
+/* Activity scroll area custom scrollbar */
+.activity-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.activity-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.activity-scroll-area::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .activity-scroll-area::-webkit-scrollbar-thumb {
+    background: #334155;
   }
 }

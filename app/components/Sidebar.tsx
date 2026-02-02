@@ -16,30 +16,48 @@ export function Sidebar({
   onSearchChange,
 }: SidebarProps) {
   return (
-    <aside className="w-full lg:w-64 flex-shrink-0">
-      <div className="lg:sticky lg:top-32">
-        <div className="mb-10">
-          <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-stone-400 mb-6">
+    // STANDARD SIDEBAR PATTERN - Always use these exact classes for consistency
+    // w-80: Fixed width (320px)
+    // flex-shrink-0: Prevents shrinking
+    // h-[calc(100vh-61px)]: Full height minus header
+    // sticky top-[61px]: Sticks below header
+    // bg-white/50: Semi-transparent white
+    <aside className="w-80 flex-shrink-0 h-[calc(100vh-61px)] sticky top-[61px] border-r border-gray-200 bg-white/50 p-6 overflow-y-auto">
+      <div className="space-y-8">
+        {/* Search */}
+        <div>
+          <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
             Search
-          </h3>
+          </label>
           <div className="relative">
-            <span className="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-stone-400 text-xl">
+            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">
               search
             </span>
             <input
-              className="w-full pl-8 pr-0 py-2 bg-transparent border-0 border-b border-stone-200 focus:ring-0 focus:border-[#8b7360] placeholder-stone-300 text-sm"
+              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white border-gray-200 focus:ring-2 focus:ring-[#8b7360] text-sm"
               placeholder="Search centres..."
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
             />
+            {searchQuery && (
+              <button
+                onClick={() => onSearchChange("")}
+                className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xl cursor-pointer"
+                aria-label="Clear search"
+              >
+                close
+              </button>
+            )}
           </div>
         </div>
-        <div className="mb-4">
-          <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-stone-400 mb-6">
+
+        {/* Neighbourhoods */}
+        <div>
+          <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
             Neighbourhoods
-          </h3>
-          <nav className="space-y-2 max-h-[calc(100vh-20rem)] overflow-y-auto pr-2">
+          </label>
+          <nav className="space-y-2">
             <button
               onClick={() => onNeighbourhoodChange(null)}
               className={

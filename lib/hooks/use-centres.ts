@@ -14,7 +14,7 @@ export function useCentres() {
   });
 }
 
-export function useCentreActivities(centreId: number | null) {
+export function useCentreActivities(centreId: string | null) {
   return useQuery({
     queryKey: ["centres", centreId, "activities"],
     queryFn: () => getCentreActivities(centreId!),
@@ -23,7 +23,7 @@ export function useCentreActivities(centreId: number | null) {
 }
 
 export function useCentreActivityDetails(
-  centreId: number | null,
+  centreId: string | null,
   activityName: string | null,
 ) {
   return useQuery({

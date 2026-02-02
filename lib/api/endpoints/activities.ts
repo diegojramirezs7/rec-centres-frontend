@@ -1,6 +1,10 @@
 import { z } from "zod";
 import { api } from "../client";
-import { normalizedActivityNameSchema, activitySchema } from "@/lib/schemas/activity";
+import {
+  normalizedActivityNameSchema,
+  aggregatedActivitySchema,
+  activitySchema,
+} from "@/lib/schemas/activity";
 
 type FetchOptions = RequestInit & {
   next?: NextFetchRequestConfig;
@@ -9,7 +13,7 @@ type FetchOptions = RequestInit & {
 export async function getNormalizedActivities(options?: FetchOptions) {
   return api.get(
     "/normalized-activities",
-    z.array(normalizedActivityNameSchema),
+    z.array(aggregatedActivitySchema),
     options
   );
 }

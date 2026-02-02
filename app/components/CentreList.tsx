@@ -35,7 +35,10 @@ export function CentreList({ centres }: CentreListProps) {
   }, [centres, searchQuery, selectedNeighbourhood]);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-12">
+    // LAYOUT PATTERN: Sidebar + Content
+    // This breaks out of parent's max-w-7xl to be wider (max-w-screen-2xl)
+    // Parent has px-6, so we DON'T add -mx-6 here (it's at root level in HomeContent)
+    <div className="flex max-w-screen-2xl mx-auto overflow-x-hidden">
       <Sidebar
         neighbourhoods={neighbourhoods}
         selectedNeighbourhood={selectedNeighbourhood}
@@ -43,30 +46,36 @@ export function CentreList({ centres }: CentreListProps) {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
-      <div className="flex-grow">
+      <main className="flex-1 min-w-0 p-8">
         {filteredCentres.length === 0 ? (
-          <div className="py-20 text-center">
-            <p className="text-stone-400 dark:text-stone-500 text-lg">
-              No centres found matching your filters.
+          <div className="text-center py-20">
+            <span className="material-symbols-outlined text-6xl text-slate-300 mb-4 block">
+              search_off
+            </span>
+            <h3 className="font-serif text-2xl text-slate-900 mb-2">
+              No centres found
+            </h3>
+            <p className="text-slate-500 mb-4">
+              Try adjusting your search or filters
             </p>
             <button
               onClick={() => {
                 setSearchQuery("");
                 setSelectedNeighbourhood(null);
               }}
-              className="mt-4 text-brand-brown-700 hover:text-brand-brown-900 text-sm font-medium"
+              className="text-[#8b7360] hover:text-[#6b5340] text-sm font-semibold"
             >
               Clear filters
             </button>
           </div>
         ) : (
-          <div className="space-y-0">
+          <div className="space-y-4">
             {filteredCentres.map((centre) => (
               <CentreCard key={centre.id} centre={centre} />
             ))}
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

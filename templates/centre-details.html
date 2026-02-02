@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Centre Activities - Third Places Vancouver</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#A68971",
+              "background-light": "#F8F5F0",
+              "background-dark": "#1A1917",
+              "card-light": "#FFFFFF",
+              "card-dark": "#252422",
+            },
+            fontFamily: {
+              display: ["Fraunces", "serif"],
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "12px",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        overflow-x: hidden;
+      }
+      .display-font {
+        font-family: "Fraunces", serif;
+      }
+      .activity-scroll-area::-webkit-scrollbar {
+        width: 6px;
+      }
+      .activity-scroll-area::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .activity-scroll-area::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 10px;
+      }
+      .dark .activity-scroll-area::-webkit-scrollbar-thumb {
+        background: #334155;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 min-h-screen flex flex-col"
+  >
+    <div
+      class="bg-white dark:bg-card-dark border-b border-slate-200 dark:border-slate-800 shrink-0"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <nav aria-label="Breadcrumb" class="flex mb-3 text-sm text-slate-500">
+          <ol class="flex items-center space-x-2">
+            <li><a class="hover:text-primary" href="#">Centres</a></li>
+            <li>
+              <span class="material-symbols-outlined text-sm"
+                >chevron_right</span
+              >
+            </li>
+            <li class="font-medium text-slate-900 dark:text-white">
+              Mount Pleasant Community Centre
+            </li>
+          </ol>
+        </nav>
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between gap-4"
+        >
+          <div>
+            <h1
+              class="text-3xl font-bold display-font text-slate-900 dark:text-white mb-2"
+            >
+              Mount Pleasant Community Centre
+            </h1>
+            <div class="flex items-center text-slate-600 dark:text-slate-400">
+              <span class="material-symbols-outlined mr-1 text-primary"
+                >location_on</span
+              >
+              <span class="text-sm">1 Kingsway, Vancouver, BC V5T 3H7</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full font-medium text-sm"
+          >
+            <span class="material-symbols-outlined text-sm"
+              >event_available</span
+            >
+            24 Activities Found
+          </div>
+        </div>
+      </div>
+    </div>
+    <main
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full flex flex-col lg:flex-row gap-8 overflow-hidden items-start"
+    >
+      <aside class="w-full lg:w-72 flex-shrink-0">
+        <div
+          class="bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 p-6"
+        >
+          <h3 class="font-bold text-lg mb-6 flex items-center gap-2">
+            <span class="material-symbols-outlined">filter_list</span>
+            Filters
+          </h3>
+          <div class="mb-8">
+            <label
+              class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-4"
+              for="your-age"
+              >Your Age</label
+            >
+            <div class="relative">
+              <input
+                class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm p-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-slate-900 dark:text-white"
+                id="your-age"
+                placeholder="Enter age..."
+                type="number"
+              />
+              <div
+                class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400"
+              >
+                <span class="text-xs font-medium">years</span>
+              </div>
+            </div>
+          </div>
+          <div class="mb-8">
+            <label
+              class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-4"
+              >Date Range</label
+            >
+            <select
+              class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm p-3 focus:ring-2 focus:ring-primary"
+            >
+              <option>Next 7 Days</option>
+              <option>This Month</option>
+              <option>Specific Dates...</option>
+            </select>
+          </div>
+          <div class="pt-6 border-t border-slate-100 dark:border-slate-800">
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input class="sr-only peer" type="checkbox" value="" />
+              <div
+                class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"
+              ></div>
+              <span class="ml-3 text-sm font-medium">Show only available</span>
+            </label>
+          </div>
+        </div>
+      </aside>
+      <div class="flex-1 flex flex-col space-y-4 h-full min-h-[700px]">
+        <div
+          class="bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-md flex flex-col flex-grow"
+        >
+          <button
+            class="w-full flex items-center justify-between p-6 group shrink-0"
+          >
+            <div class="flex items-center gap-6">
+              <div
+                class="w-14 h-14 rounded-xl bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-3xl"
+                  >sports_basketball</span
+                >
+              </div>
+              <div class="text-left">
+                <h2 class="text-2xl font-bold display-font">Basketball</h2>
+                <p class="text-slate-500 text-sm">
+                  4 sessions available this week • Multi-level
+                </p>
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors rotate-180"
+              >expand_more</span
+            >
+          </button>
+          <div
+            class="border-t border-slate-100 dark:border-slate-800 flex flex-col flex-grow overflow-hidden"
+          >
+            <div
+              class="hidden md:grid grid-cols-12 gap-4 px-8 py-3 bg-slate-50/50 dark:bg-slate-900/50 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-800 shrink-0"
+            >
+              <div class="col-span-4">Activity Name</div>
+              <div class="col-span-2 text-center">Day</div>
+              <div class="col-span-2 text-center">Time</div>
+              <div class="col-span-2 text-center">Age Group</div>
+              <div class="col-span-2 text-right">Available Openings</div>
+            </div>
+            <div class="overflow-y-auto activity-scroll-area flex-grow">
+              <div
+                class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors border-b border-slate-50 dark:border-slate-800/50"
+              >
+                <div class="col-span-4">
+                  <h4 class="font-bold text-slate-900 dark:text-white">
+                    Adult Open Gym
+                  </h4>
+                  <p class="text-xs text-slate-400">Oct 24, 2024 • Drop-in</p>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span class="text-sm font-medium">Tuesday</span>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span class="text-sm font-medium">6:00 PM - 8:00 PM</span>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span
+                    class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded-md text-slate-600 dark:text-slate-400"
+                    >Adult (19+)</span
+                  >
+                </div>
+                <div class="col-span-2 md:text-right">
+                  <div
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-sm font-semibold"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    12 spots left
+                  </div>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors border-b border-slate-50 dark:border-slate-800/50"
+              >
+                <div class="col-span-4">
+                  <h4 class="font-bold text-slate-900 dark:text-white">
+                    Youth League Prep
+                  </h4>
+                  <p class="text-xs text-slate-400">Oct 25, 2024 • Seasonal</p>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span class="text-sm font-medium">Wednesday</span>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span class="text-sm font-medium">4:30 PM - 6:00 PM</span>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span
+                    class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded-md text-slate-600 dark:text-slate-400"
+                    >Teens (13-18)</span
+                  >
+                </div>
+                <div class="col-span-2 md:text-right">
+                  <div
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-sm font-semibold"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    4 spots left
+                  </div>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors border-b border-slate-50 dark:border-slate-800/50"
+              >
+                <div class="col-span-4">
+                  <h4
+                    class="font-bold text-slate-900 dark:text-white opacity-60"
+                  >
+                    Adult Open Gym
+                  </h4>
+                  <p class="text-xs text-slate-400">Oct 26, 2024 • Drop-in</p>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span class="text-sm font-medium opacity-60">Thursday</span>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span class="text-sm font-medium opacity-60"
+                    >7:30 PM - 9:30 PM</span
+                  >
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span
+                    class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded-md text-slate-600 dark:text-slate-400"
+                    >Adult (19+)</span
+                  >
+                </div>
+                <div class="col-span-2 md:text-right">
+                  <div
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm font-semibold"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                    Full
+                  </div>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors border-b border-slate-50 dark:border-slate-800/50"
+              >
+                <div class="col-span-4">
+                  <h4 class="font-bold text-slate-900 dark:text-white">
+                    Weekend Casual Play
+                  </h4>
+                  <p class="text-xs text-slate-400">Oct 28, 2024 • Drop-in</p>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span class="text-sm font-medium">Saturday</span>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span class="text-sm font-medium">10:00 AM - 12:00 PM</span>
+                </div>
+                <div class="col-span-2 md:text-center">
+                  <span
+                    class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded-md text-slate-600 dark:text-slate-400"
+                    >All Ages</span
+                  >
+                </div>
+                <div class="col-span-2 md:text-right">
+                  <div
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-sm font-semibold"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    8 spots left
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition-shadow shrink-0"
+        >
+          <button class="w-full flex items-center justify-between p-5 group">
+            <div class="flex items-center gap-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-2xl"
+                  >self_improvement</span
+                >
+              </div>
+              <div class="text-left">
+                <h2 class="text-xl font-bold display-font">
+                  Yoga &amp; Mindfulness
+                </h2>
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors"
+              >expand_more</span
+            >
+          </button>
+        </div>
+        <div
+          class="bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition-shadow shrink-0"
+        >
+          <button class="w-full flex items-center justify-between p-5 group">
+            <div class="flex items-center gap-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-2xl">palette</span>
+              </div>
+              <div class="text-left">
+                <h2 class="text-xl font-bold display-font">Visual Arts</h2>
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors"
+              >expand_more</span
+            >
+          </button>
+        </div>
+        <div
+          class="bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition-shadow shrink-0"
+        >
+          <button class="w-full flex items-center justify-between p-5 group">
+            <div class="flex items-center gap-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-2xl"
+                  >fitness_center</span
+                >
+              </div>
+              <div class="text-left">
+                <h2 class="text-xl font-bold display-font">
+                  Fitness &amp; Gym
+                </h2>
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors"
+              >expand_more</span
+            >
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

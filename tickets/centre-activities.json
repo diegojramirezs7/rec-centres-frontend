@@ -1,0 +1,76 @@
+[
+    {
+        "name": "Soccer",
+        "centre_id": "697dc62dddfff1d0ecc3802c",
+        "centre_name": "False Creek",
+        "category": "sports",
+        "total": 3,
+        "examples": [
+            "Sportball Indoor Soccer",
+            "Sportball Parent and Tot Indoor Soccer"
+        ]
+    },
+    {
+        "name": "Tennis",
+        "centre_id": "697dc62dddfff1d0ecc3802c",
+        "centre_name": "False Creek",
+        "category": "sports",
+        "total": 7,
+        "examples": [
+            "Children's Tennis - Beginner (7-9yrs)"
+        ]
+    },
+    {
+        "name": "Pickleball",
+        "centre_id": "697dc62dddfff1d0ecc3802c",
+        "centre_name": "False Creek",
+        "category": "sports",
+        "total": 31,
+        "examples": [
+            "SEMI-PRIVATE PICKLEBALL LESSONS FOR CONFIDENT INTERMEDIATE P",
+            "Adult Pickleball Court Rental"
+        ]
+    },
+    {
+        "name": "Basketball",
+        "centre_id": "697dc62dddfff1d0ecc3802c",
+        "centre_name": "False Creek",
+        "category": "sports",
+        "total": 7,
+        "examples": [
+            "Shooting Stars Academy - Girls Basketball Skill Development",
+            "Night Hoops Basketball (False Creek)"
+        ]
+    },
+    {
+        "name": "Hockey",
+        "centre_id": "697dc62dddfff1d0ecc3802c",
+        "centre_name": "False Creek",
+        "category": "sports",
+        "total": 1,
+        "examples": [
+            "Floor Hockey"
+        ]
+    },
+    {
+        "name": "Open Gym",
+        "centre_id": "697dc62dddfff1d0ecc3802c",
+        "centre_name": "False Creek",
+        "category": "sports",
+        "total": 1,
+        "examples": [
+            "Parent and Tot Gym"
+        ]
+    },
+    {
+        "name": "Multisport",
+        "centre_id": "697dc62dddfff1d0ecc3802c",
+        "centre_name": "False Creek",
+        "category": "sports",
+        "total": 4,
+        "examples": [
+            "Sportball Jr.",
+            "Sportball Parent and Tot Multi-Sport"
+        ]
+    }
+]

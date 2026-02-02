@@ -18,7 +18,7 @@ async function verify() {
     // Test 2: Fetch activities for first centre
     if (centres.length > 0) {
       console.log("2. Testing getCentreActivities()...");
-      const activities = await getCentreActivities(Number(centres[0].id), { cache: 'no-store' });
+      const activities = await getCentreActivities(centres[0].id, { cache: 'no-store' });
       console.log(`   ✅ Fetched ${activities.length} activities for ${centres[0].name}`);
       if (activities.length > 0) {
         console.log(`   Example: ${activities[0]?.name} (${activities[0]?.total} activities)\n`);
