@@ -10,7 +10,7 @@ export function ActivitySidebar({
   onSearchChange,
 }: ActivitySidebarProps) {
   return (
-    <aside className="w-80 flex-shrink-0 h-[calc(100vh-61px)] sticky top-[61px] border-r border-gray-200 bg-white/50 p-6 overflow-y-auto">
+    <aside className="w-80 flex-shrink-0 max-h-[calc(100vh-77px)] sticky top-[77px] border-r border-gray-200 bg-white/50 p-8 overflow-y-auto">
       <div className="space-y-8">
         {/* Search */}
         <div>

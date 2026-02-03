@@ -18,7 +18,7 @@ export function CentreDetailsSidebar({
   onShowAvailableOnlyChange,
 }: CentreDetailsSidebarProps) {
   return (
-    <aside className="w-80 flex-shrink-0 h-[calc(100vh-61px)] sticky top-[61px] border-r border-gray-200 bg-white/50 p-6 overflow-y-auto">
+    <aside className="w-80 flex-shrink-0 max-h-[calc(100vh-77px)] sticky top-[77px] border-r border-gray-200 bg-white/50 p-8 overflow-y-auto">
       <div className="space-y-8">
         {/* Age Filter */}
         <div>
@@ -62,7 +62,7 @@ export function CentreDetailsSidebar({
             <option value="all">All Dates</option>
             <option value="next-7-days">Next 7 Days</option>
             <option value="this-month">This Month</option>
-            <option value="specific">Specific Dates...</option>
+            <option value="next-month">Next Month</option>
           </select>
         </div>
 

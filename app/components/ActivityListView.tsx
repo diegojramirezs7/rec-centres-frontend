@@ -22,14 +22,14 @@ export function ActivityListView({ activities }: ActivityListViewProps) {
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter((activity) =>
-        activity.name.toLowerCase().includes(query)
+        activity.name.toLowerCase().includes(query),
       );
     }
 
     // Filter by selected category
     if (selectedCategory) {
       filtered = filtered.filter(
-        (activity) => activity.name === selectedCategory
+        (activity) => activity.name === selectedCategory,
       );
     }
 
@@ -37,7 +37,7 @@ export function ActivityListView({ activities }: ActivityListViewProps) {
   }, [activities, searchQuery, selectedCategory]);
 
   return (
-    <div className="flex max-w-screen-2xl mx-auto overflow-x-hidden">
+    <div className="flex max-w-screen-2xl mx-auto mt-8">
       {/* Sidebar */}
       <ActivitySidebar
         searchQuery={searchQuery}
@@ -45,12 +45,12 @@ export function ActivityListView({ activities }: ActivityListViewProps) {
       />
 
       {/* Main content */}
-      <main className="flex-1 min-w-0 p-8">
-        <PopularActivities
+      <main className="flex-1 min-w-0 px-8">
+        {/* <PopularActivities
           activities={activities}
           selectedCategory={selectedCategory}
           onCategorySelect={setSelectedCategory}
-        />
+        /> */}
 
         {/* Activity cards */}
         <div className="space-y-4">

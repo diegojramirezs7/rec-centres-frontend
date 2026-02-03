@@ -19,10 +19,11 @@ export function Sidebar({
     // STANDARD SIDEBAR PATTERN - Always use these exact classes for consistency
     // w-80: Fixed width (320px)
     // flex-shrink-0: Prevents shrinking
-    // h-[calc(100vh-61px)]: Full height minus header
-    // sticky top-[61px]: Sticks below header
+    // max-h-[calc(100vh-77px)]: Max height accounting for header + gap (61px + 16px)
+    // sticky top-[77px]: Sticks below header with 16px gap when scrolling
     // bg-white/50: Semi-transparent white
-    <aside className="w-80 flex-shrink-0 h-[calc(100vh-61px)] sticky top-[61px] border-r border-gray-200 bg-white/50 p-6 overflow-y-auto">
+    // p-8: 32px padding all sides (matches main content for alignment)
+    <aside className="w-80 flex-shrink-0 max-h-[calc(100vh-77px)] sticky top-[77px] border-r border-gray-200 bg-white/50 p-8 overflow-y-auto">
       <div className="space-y-8">
         {/* Search */}
         <div>

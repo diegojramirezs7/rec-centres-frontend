@@ -38,7 +38,9 @@ export function CentreList({ centres }: CentreListProps) {
     // LAYOUT PATTERN: Sidebar + Content
     // This breaks out of parent's max-w-7xl to be wider (max-w-screen-2xl)
     // Parent has px-6, so we DON'T add -mx-6 here (it's at root level in HomeContent)
-    <div className="flex max-w-screen-2xl mx-auto overflow-x-hidden">
+    // Note: No overflow-x-hidden here as it breaks sticky positioning
+    // mt-8: Creates space between Hero section and this content area
+    <div className="flex max-w-screen-2xl mx-auto mt-8">
       <Sidebar
         neighbourhoods={neighbourhoods}
         selectedNeighbourhood={selectedNeighbourhood}
@@ -46,7 +48,7 @@ export function CentreList({ centres }: CentreListProps) {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
-      <main className="flex-1 min-w-0 p-8">
+      <main className="flex-1 min-w-0 px-8">
         {filteredCentres.length === 0 ? (
           <div className="text-center py-20">
             <span className="material-symbols-outlined text-6xl text-slate-300 mb-4 block">

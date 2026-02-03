@@ -660,6 +660,66 @@ function CentreNotFound() {
 - Filters work in combination
 - Performance is acceptable with many activities
 
+
+**Prerequisite**:
+- Make API call when user clicks/expands activity, then the list of activities would be shown on the expandable section. 
+- Filters would then apply to those fetched activities
+- Endpoint Example: GET `http://localhost:8000/centres/697dc62dddfff1d0ecc3802c/activities/Tennis` 
+- endpoint structure: `centres/<centre_id>/activities/<name>`
+- sample response:
+```json
+[
+  {
+    "id": 583960,
+    "name": "Adult Indoor Tennis",
+    "desc": "  This program is designed for adult players from beginner to 2.5 level. Build your skills and confidence in a fun, supportive indoor environment while developing your technique, footwork, and consistency. Please bring your own racquet for the lessons. Registration only, no drop-ins. Refunds are processed up to 72 hours prior to the first class, unless you have a medical note. Please note, this program runs in the\r\nMini Gym.",
+    "centre_id": "697dc62dddfff1d0ecc3802c",
+    "centre_name": "False Creek",
+    "category_id": "27",
+    "detail_url": "https://ca.apm.activecommunities.com/vancouver/Activity_Search/adult-indoor-tennis/583960?locale=en-US",
+    "date_range_start": "2026-01-07",
+    "date_range_end": "2026-02-11",
+    "date_range_description": "",
+    "date_range": "January 7, 2026 to February 11, 2026",
+    "time_range": "5:30 PM - 7:00 PM",
+    "only_one_day": false,
+    "days_of_week": "Wed",
+    "age_max_year": 0,
+    "age_max_month": 0,
+    "age_min_year": 19,
+    "age_min_month": 0,
+    "ages": "19 and up",
+    "openings": 0,
+    "enroll_url": "",
+    "normalized_activity_type": "Tennis"
+  },
+  {
+    "id": 584185,
+    "name": "Adult Indoor Tennis",
+    "desc": "  This program is designed for adult players from beginner to 2.5 level. Build your skills and confidence in a fun, supportive indoor environment while developing your technique, footwork, and consistency. Please bring your own racquet for the lessons. Registration only, no drop-ins. Refunds are processed up to 72 hours prior to the first class, unless you have a medical note. Please note, this program runs in the\r\nMini Gym.",
+    "centre_id": "697dc62dddfff1d0ecc3802c",
+    "centre_name": "False Creek",
+    "category_id": "27",
+    "detail_url": "https://ca.apm.activecommunities.com/vancouver/Activity_Search/adult-indoor-tennis/584185?locale=en-US",
+    "date_range_start": "2026-02-18",
+    "date_range_end": "2026-03-25",
+    "date_range_description": "",
+    "date_range": "February 18, 2026 to March 25, 2026",
+    "time_range": "5:30 PM - 7:00 PM",
+    "only_one_day": false,
+    "days_of_week": "Wed",
+    "age_max_year": 0,
+    "age_max_month": 0,
+    "age_min_year": 19,
+    "age_min_month": 0,
+    "ages": "19 and up",
+    "openings": 0,
+    "enroll_url": "",
+    "normalized_activity_type": "Tennis"
+  },
+]
+```
+
 ### Phase 7: Navigation Integration
 **Goal**: Link centre list to details page
 
@@ -683,17 +743,15 @@ function CentreNotFound() {
 1. Add loading skeletons for data fetching
 2. Verify all accessibility features
 3. Test keyboard navigation
-4. Test dark mode thoroughly
-5. Test responsive design on all breakpoints
-6. Add error boundaries
-7. Optimize performance
-8. Cross-browser testing
+4. Test responsive design on all breakpoints
+5. Add error boundaries
+6. Optimize performance
+7. Cross-browser testing
 
 **Acceptance Criteria**:
 - Loading states are smooth
 - All ARIA labels are correct
 - Keyboard navigation works
-- Dark mode works perfectly
 - Responsive on all devices
 - No console errors
 - Performance is acceptable

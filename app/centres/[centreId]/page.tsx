@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getCentreById, getCentreActivities } from "@/lib/api/endpoints/centres";
+import {
+  getCentreById,
+  getCentreActivities,
+} from "@/lib/api/endpoints/centres";
 import { CentreDetailsHeader } from "@/app/components/CentreDetailsHeader";
 import { CentreDetailsContent } from "@/app/components/CentreDetailsContent";
 
@@ -8,7 +11,9 @@ interface PageProps {
   params: Promise<{ centreId: string }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   try {
     const { centreId } = await params;
     const centre = await getCentreById(centreId);
@@ -20,7 +25,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   } catch (error) {
     return {
       title: "Centre Not Found - Third Places Vancouver",
-      description: "The community centre you're looking for could not be found.",
+      description:
+        "The community centre you're looking for could not be found.",
     };
   }
 }
@@ -36,7 +42,10 @@ export default async function CentreDetailsPage({ params }: PageProps) {
     ]);
 
     // Calculate total activities across all groups
-    const totalActivities = activities.reduce((sum, group) => sum + group.total, 0);
+    const totalActivities = activities.reduce(
+      (sum, group) => sum + group.total,
+      0,
+    );
 
     return (
       <main className="max-w-7xl mx-auto px-6 py-12">

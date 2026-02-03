@@ -1,17 +1,50 @@
 "use client";
 
-import { useState } from "react";
-import type { NormalizedActivity } from "@/lib/schemas/activity";
+import { useState, useEffect } from "react";
+import type { NormalizedActivity, Activity } from "@/lib/schemas/activity";
 import { getActivityIcon } from "@/lib/constants/activity-icons";
+import { ActivitySessionsTable } from "./ActivitySessionsTable";
+import { getCentreActivityDetails } from "@/lib/api/endpoints/centres";
 
 interface ActivityCategoryCardProps {
   activity: NormalizedActivity;
+  ageFilter: string;
+  dateRange: string;
+  showAvailableOnly: boolean;
 }
 
-export function ActivityCategoryCard({ activity }: ActivityCategoryCardProps) {
+export function ActivityCategoryCard({
+  activity,
+  ageFilter,
+  dateRange,
+  showAvailableOnly,
+}: ActivityCategoryCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [sessions, setSessions] = useState<Activity[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const iconConfig = getActivityIcon(activity.name);
   const Icon = iconConfig.icon;
+
+  // Fetch session details when card is expanded
+  useEffect(() => {
+    if (isExpanded && sessions.length === 0 && !error) {
+      setIsLoading(true);
+      getCentreActivityDetails(activity.centre_id, activity.name)
+        .then((data) => {
+          setSessions(data);
+          setError(null);
+        })
+        .catch((err) => {
+          console.error("Failed to fetch activity details:", err);
+          setError("Failed to load activity details");
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [isExpanded, activity.centre_id, activity.name, sessions.length, error]);
 
   return (
     <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
@@ -51,28 +84,15 @@ export function ActivityCategoryCard({ activity }: ActivityCategoryCardProps) {
 
       {/* Accordion Content - Shows when Expanded */}
       {isExpanded && (
-        <div className="border-t border-gray-100 p-6 bg-stone-50/50">
-          <p className="text-sm font-bold uppercase tracking-wider text-stone-400 mb-4">
-            Example Activities
-          </p>
-
-          {activity.examples.length > 0 ? (
-            <ul className="space-y-3">
-              {activity.examples.map((example, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm">
-                  <span className="material-symbols-outlined text-[#8b7360] text-lg mt-0.5 flex-shrink-0">
-                    check_circle
-                  </span>
-                  <span className="text-stone-700">{example}</span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-stone-500 text-sm italic">
-              No example activities available
-            </p>
-          )}
-        </div>
+        <ActivitySessionsTable
+          sessions={sessions}
+          examples={activity.examples}
+          isLoading={isLoading}
+          error={error}
+          ageFilter={ageFilter}
+          dateRange={dateRange}
+          showAvailableOnly={showAvailableOnly}
+        />
       )}
     </div>
   );
