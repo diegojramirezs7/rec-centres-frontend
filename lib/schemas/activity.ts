@@ -50,6 +50,8 @@ export const activitySchema = z.object({
   desc: z.string(),
   centre_id: z.string(),
   centre_name: z.string(),
+  centre_lat: z.number(),
+  centre_lng: z.number(),
   category_id: z.string(),
   detail_url: z.string().nullable().optional(),
   date_range_start: z.string().nullable().optional(),

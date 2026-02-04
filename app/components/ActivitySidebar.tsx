@@ -42,10 +42,10 @@ export function ActivitySidebar({
 
         {/* Placeholder for future filters */}
         <div className="pt-4 border-t border-gray-100">
-          <p className="text-sm text-slate-500 leading-relaxed">
+          {/* <p className="text-sm text-slate-500 leading-relaxed">
             Additional filters (date range, age group, availability) will be
             available when data becomes available.
-          </p>
+          </p> */}
         </div>
       </div>
     </aside>

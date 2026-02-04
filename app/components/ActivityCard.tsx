@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { AggregatedActivity } from "@/lib/schemas/activity";
 import { getActivityIcon } from "@/lib/constants/activity-icons";
 
@@ -15,8 +16,14 @@ export function ActivityCard({ activity }: ActivityCardProps) {
   const centreText =
     remaining > 0 ? `${displayCentres}, and ${remaining} more` : displayCentres;
 
+  // URL-encode the activity name for the link
+  const activityUrl = `/activities/${encodeURIComponent(activity.name)}`;
+
   return (
-    <div className="activity-card group flex items-center gap-6 bg-white p-5 rounded-3xl border border-gray-100 shadow-sm">
+    <Link
+      href={activityUrl}
+      className="activity-card group flex items-center gap-6 bg-white p-5 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#8b7360] transition-all cursor-pointer"
+    >
       {/* Icon */}
       <div
         className={`w-16 h-16 ${iconConfig.bgColor} ${iconConfig.iconColor} rounded-full flex items-center justify-center shrink-0`}
@@ -41,10 +48,10 @@ export function ActivityCard({ activity }: ActivityCardProps) {
           {activity.total_activities === 1 ? "Activity" : "Activities"}{" "}
           Available
         </div>
-        <button className="bg-[#8b7360]/10 hover:bg-[#8b7360] text-[#8b7360] hover:text-white px-4 py-1.5 rounded-full text-xs font-bold transition-colors">
+        <div className="bg-[#8b7360]/10 group-hover:bg-[#8b7360] text-[#8b7360] group-hover:text-white px-4 py-1.5 rounded-full text-xs font-bold transition-colors inline-block">
           Explore
-        </button>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -1,11 +1,13 @@
 import Link from "next/link";
 import type { CommunityCentre } from "@/lib/schemas/centre";
+import { formatDistance } from "@/lib/utils/formatDistance";
 
 interface CentreCardProps {
   centre: CommunityCentre;
+  distance?: number;
 }
 
-export function CentreCard({ centre }: CentreCardProps) {
+export function CentreCard({ centre, distance }: CentreCardProps) {
   return (
     <Link
       href={`/centres/${centre.id}`}
@@ -24,9 +26,16 @@ export function CentreCard({ centre }: CentreCardProps) {
           <h2 className="font-serif text-3xl text-slate-900 mb-2">
             {centre.name}
           </h2>
-          <p className="text-slate-500 text-sm mb-4">
-            {centre.address}
-          </p>
+          <p className="text-slate-500 text-sm mb-1">{centre.address}</p>
+          {distance !== undefined && (
+            <div className="flex items-center gap-1 text-slate-500 text-sm mb-3">
+              <span className="material-symbols-outlined text-base">
+                location_on
+              </span>
+              <span>{formatDistance(distance)}</span>
+            </div>
+          )}
+          {distance === undefined && <div className="mb-4" />}
           {centre.example_activities.length > 0 && (
             <div className="flex flex-wrap items-center gap-2">
               {centre.example_activities.slice(0, 3).map((activity, idx) => (
