@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { CentreDetailsFilters } from "./CentreDetailsFilters";
+import type { Activity } from "@/lib/schemas/activity";
 
 interface CentreDetailsHeaderProps {
   centreName: string;
   address: string;
   totalActivities: number;
+  activities: Activity[];
   // Filter props
+  activityTypeFilter: string[];
+  onActivityTypeFilterChange: (types: string[]) => void;
   dateRange: string;
   onDateRangeChange: (range: string) => void;
   ageFilter: string;
@@ -18,6 +22,9 @@ export function CentreDetailsHeader({
   centreName,
   address,
   totalActivities,
+  activities,
+  activityTypeFilter,
+  onActivityTypeFilterChange,
   dateRange,
   onDateRangeChange,
   ageFilter,
@@ -64,15 +71,18 @@ export function CentreDetailsHeader({
           </div>
 
           {/* Subtitle */}
-          <p className="text-lg text-stone-500">
+          {/* <p className="text-lg text-stone-500">
             {totalActivities} {totalActivities === 1 ? "activity" : "activities"}{" "}
             available
-          </p>
+          </p> */}
         </div>
 
         {/* Filter Controls */}
         <div className="flex flex-col gap-3">
           <CentreDetailsFilters
+            activities={activities}
+            activityTypeFilter={activityTypeFilter}
+            onActivityTypeFilterChange={onActivityTypeFilterChange}
             dateRange={dateRange}
             onDateRangeChange={onDateRangeChange}
             ageFilter={ageFilter}

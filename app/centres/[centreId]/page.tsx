@@ -22,6 +22,7 @@ export default function CentreDetailsPage() {
   const [error, setError] = useState<string | null>(null);
 
   // Filter state
+  const [activityTypeFilter, setActivityTypeFilter] = useState<string[]>([]);
   const [ageFilter, setAgeFilter] = useState("");
   const [dateRange, setDateRange] = useState("all");
   const [showAvailableOnly, setShowAvailableOnly] = useState(false);
@@ -86,6 +87,9 @@ export default function CentreDetailsPage() {
         centreName={centre.name}
         address={centre.address}
         totalActivities={totalActivities}
+        activities={activities}
+        activityTypeFilter={activityTypeFilter}
+        onActivityTypeFilterChange={setActivityTypeFilter}
         dateRange={dateRange}
         onDateRangeChange={setDateRange}
         ageFilter={ageFilter}
@@ -98,6 +102,7 @@ export default function CentreDetailsPage() {
       <CentreDetailsContent
         centre={centre}
         activities={activities}
+        activityTypeFilter={activityTypeFilter}
         ageFilter={ageFilter}
         dateRange={dateRange}
         showAvailableOnly={showAvailableOnly}

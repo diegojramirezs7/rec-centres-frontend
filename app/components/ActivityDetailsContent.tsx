@@ -120,21 +120,40 @@ export function ActivityDetailsContent({
     // Then, sort by distance if closeToMe is active and we have coordinates
     if (closeToMe && coordinates) {
       result = result
-        .map((session) => ({
-          ...session,
-          distance: calculateDistance(
-            coordinates.latitude,
-            coordinates.longitude,
-            session.centre_lat ?? 0,
-            session.centre_lng ?? 0
-          ),
-        }))
+        .map((session) => {
+          // Only calculate distance if the centre has valid coordinates
+          if (
+            session.centre_lat != null &&
+            session.centre_lng != null &&
+            session.centre_lat !== 0 &&
+            session.centre_lng !== 0
+          ) {
+            return {
+              ...session,
+              distance: calculateDistance(
+                coordinates.latitude,
+                coordinates.longitude,
+                session.centre_lat,
+                session.centre_lng
+              ),
+            };
+          }
+          // Sessions without coordinates get undefined distance (will be sorted to the end)
+          return { ...session, distance: undefined };
+        })
         .sort((a, b) => {
-          // Sort by distance, with alphabetical tie-breaking
-          if (Math.abs(a.distance! - b.distance!) < 0.01) {
+          // Sessions without distance go to the end
+          if (a.distance === undefined && b.distance === undefined) {
             return a.name.localeCompare(b.name);
           }
-          return a.distance! - b.distance!;
+          if (a.distance === undefined) return 1;
+          if (b.distance === undefined) return -1;
+
+          // Sort by distance, with alphabetical tie-breaking
+          if (Math.abs(a.distance - b.distance) < 0.01) {
+            return a.name.localeCompare(b.name);
+          }
+          return a.distance - b.distance;
         });
     }
 

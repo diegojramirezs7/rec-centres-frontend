@@ -8,6 +8,7 @@ import { CentreActivitiesTable } from "./CentreActivitiesTable";
 interface CentreDetailsContentProps {
   centre: CommunityCentre;
   activities: Activity[];
+  activityTypeFilter: string[];
   ageFilter: string;
   dateRange: string;
   showAvailableOnly: boolean;
@@ -16,6 +17,7 @@ interface CentreDetailsContentProps {
 export function CentreDetailsContent({
   centre,
   activities,
+  activityTypeFilter,
   ageFilter,
   dateRange,
   showAvailableOnly,
@@ -26,6 +28,16 @@ export function CentreDetailsContent({
   // Filter activities based on user criteria
   const filteredActivities = useMemo(() => {
     return activities.filter((activity) => {
+      // Activity type filter (OR logic)
+      if (activityTypeFilter.length > 0) {
+        if (
+          !activity.normalized_activity_type ||
+          !activityTypeFilter.includes(activity.normalized_activity_type)
+        ) {
+          return false;
+        }
+      }
+
       // Age filter
       if (ageFilter) {
         const userAge = parseInt(ageFilter);
@@ -84,7 +96,7 @@ export function CentreDetailsContent({
 
       return true;
     });
-  }, [activities, ageFilter, dateRange, showAvailableOnly]);
+  }, [activities, activityTypeFilter, ageFilter, dateRange, showAvailableOnly]);
 
   // Handle sort change
   const handleSortChange = (field: string) => {

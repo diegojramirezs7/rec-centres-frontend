@@ -3,7 +3,8 @@ import { ActivitiesContent } from "../components/ActivitiesContent";
 
 export const metadata = {
   title: "Find Activities | Third Places Vancouver",
-  description: "Discover activities and programs across all Vancouver community centres.",
+  description:
+    "Discover activities and programs across all Vancouver community centres.",
 };
 
 export default async function ActivitiesPage() {

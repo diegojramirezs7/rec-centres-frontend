@@ -20,7 +20,7 @@ export function CentreCard({ centre, distance }: CentreCardProps) {
               {centre.neighbourhood}
             </span>
             <span className="text-[10px] uppercase tracking-widest font-bold text-slate-400">
-              {centre.total_activities} activities available
+              ({centre.total_activities} activities)
             </span>
           </div>
           <h2 className="font-serif text-3xl text-slate-900 mb-2">
