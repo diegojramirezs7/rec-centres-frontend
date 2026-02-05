@@ -134,7 +134,7 @@ export function ActivityDetailsContent({
                 coordinates.latitude,
                 coordinates.longitude,
                 session.centre_lat,
-                session.centre_lng
+                session.centre_lng,
               ),
             };
           }
@@ -158,7 +158,14 @@ export function ActivityDetailsContent({
     }
 
     return result;
-  }, [sessions, ageFilter, dateRange, showAvailableOnly, closeToMe, coordinates]);
+  }, [
+    sessions,
+    ageFilter,
+    dateRange,
+    showAvailableOnly,
+    closeToMe,
+    coordinates,
+  ]);
 
   return (
     <>

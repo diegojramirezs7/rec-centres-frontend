@@ -4,6 +4,8 @@ import { useState, useMemo } from "react";
 import type { CommunityCentre } from "@/lib/schemas/centre";
 import { CentreCard } from "./CentreCard";
 import { Sidebar } from "./Sidebar";
+import { MobileFilterButton } from "./MobileFilterButton";
+import { MobileCentresFilterDrawer } from "./MobileCentresFilterDrawer";
 import { calculateDistance } from "@/lib/utils/geolocation";
 import type {
   Coordinates,
@@ -31,6 +33,7 @@ export function CentreList({
   const [selectedNeighbourhood, setSelectedNeighbourhood] = useState<
     string | null
   >(null);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Error message mapping
   const getErrorMessage = (error: GeolocationError): string => {
@@ -92,21 +95,45 @@ export function CentreList({
     return result;
   }, [centres, searchQuery, selectedNeighbourhood, closeToMe, coordinates]);
 
+  // Calculate active filters count
+  const activeFiltersCount =
+    (searchQuery ? 1 : 0) + (selectedNeighbourhood ? 1 : 0);
+
   return (
-    // LAYOUT PATTERN: Sidebar + Content
-    // This breaks out of parent's max-w-7xl to be wider (max-w-screen-2xl)
-    // Parent has px-6, so we DON'T add -mx-6 here (it's at root level in HomeContent)
-    // Note: No overflow-x-hidden here as it breaks sticky positioning
-    // mt-8: Creates space between Hero section and this content area
-    <div className="flex max-w-screen-2xl mx-auto mt-8">
-      <Sidebar
+    <>
+      {/* Mobile Filter Button */}
+      <MobileFilterButton
+        onClick={() => setMobileFiltersOpen(true)}
+        activeFiltersCount={activeFiltersCount}
+      />
+
+      {/* Mobile Filter Drawer */}
+      <MobileCentresFilterDrawer
+        open={mobileFiltersOpen}
+        onOpenChange={setMobileFiltersOpen}
         neighbourhoods={neighbourhoods}
         selectedNeighbourhood={selectedNeighbourhood}
         onNeighbourhoodChange={setSelectedNeighbourhood}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
-      <main className="flex-1 min-w-0 px-8">
+
+      {/* LAYOUT PATTERN: Sidebar + Content */}
+      {/* This breaks out of parent's max-w-7xl to be wider (max-w-screen-2xl) */}
+      {/* Parent has px-4 sm:px-6, responsive padding */}
+      {/* Note: No overflow-x-hidden here as it breaks sticky positioning */}
+      {/* mt-6 sm:mt-8: Creates space between Hero section and this content area */}
+      {/* flex-col lg:flex-row: Stack on mobile, side-by-side on desktop */}
+      <div className="flex flex-col lg:flex-row max-w-screen-2xl mx-auto mt-6 sm:mt-8">
+        <Sidebar
+          neighbourhoods={neighbourhoods}
+          selectedNeighbourhood={selectedNeighbourhood}
+          onNeighbourhoodChange={setSelectedNeighbourhood}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          className="hidden lg:block"
+        />
+        <main className="flex-1 min-w-0 px-0 lg:px-8">
         {/* Error Banner */}
         {error && (
           <div className="mb-6 bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start justify-between">
@@ -164,5 +191,6 @@ export function CentreList({
         )}
       </main>
     </div>
+    </>
   );
 }

@@ -3,18 +3,20 @@
 interface ActivitySidebarProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  className?: string;
 }
 
 export function ActivitySidebar({
   searchQuery,
   onSearchChange,
+  className,
 }: ActivitySidebarProps) {
   return (
-    <aside className="w-80 flex-shrink-0 max-h-[calc(100vh-77px)] sticky top-[77px] border-r border-gray-200 bg-white/50 p-8 overflow-y-auto">
+    <aside className={`w-80 flex-shrink-0 max-h-[calc(100vh-77px)] sticky top-[77px] border-r border-gray-200 bg-white p-8 overflow-y-auto ${className || ""}`}>
       <div className="space-y-8">
         {/* Search */}
         <div>
-          <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
+          <label className="block text-xs font-bold text-[#8b7360] uppercase tracking-wider mb-3">
             Search
           </label>
           <div className="relative">
@@ -22,7 +24,7 @@ export function ActivitySidebar({
               search
             </span>
             <input
-              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white border-gray-200 focus:ring-2 focus:ring-[#8b7360] text-sm"
+              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-stone-50 border border-gray-300 focus:ring-2 focus:ring-[#8b7360] focus:bg-white text-sm"
               placeholder="Search activities..."
               type="text"
               value={searchQuery}

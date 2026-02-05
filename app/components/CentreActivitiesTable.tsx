@@ -70,18 +70,10 @@ export function CentreActivitiesTable({
             </span>
           )}
         </button>
-        <div className="col-span-2">
-          Day & Time
-        </div>
-        <div className="col-span-2 text-center">
-          Age Group
-        </div>
-        <div className="col-span-2 text-center">
-          Date Range
-        </div>
-        <div className="col-span-2 text-right">
-          Status
-        </div>
+        <div className="col-span-2">Day & Time</div>
+        <div className="col-span-2 text-center">Age Group</div>
+        <div className="col-span-2 text-center">Date Range</div>
+        <div className="col-span-2 text-right">Status</div>
       </div>
 
       {/* Table Body */}
@@ -94,7 +86,7 @@ export function CentreActivitiesTable({
                 target: "_blank",
                 rel: "noopener noreferrer",
                 className:
-                  "grid grid-cols-1 lg:grid-cols-12 gap-4 items-center px-8 py-5 hover:bg-stone-50 transition-colors cursor-pointer group",
+                  "grid grid-cols-1 lg:grid-cols-12 gap-4 items-center px-8 py-5 border border-stone-100 hover:bg-stone-50 transition-colors cursor-pointer group",
               }
             : {
                 className:
@@ -114,9 +106,7 @@ export function CentreActivitiesTable({
                   </div>
                 )}
                 <div className="flex items-center gap-2">
-                  <h4 className="font-bold text-stone-900">
-                    {activity.name}
-                  </h4>
+                  <h4 className="font-bold text-stone-900">{activity.name}</h4>
                   {activity.detail_url && (
                     <span className="material-symbols-outlined text-stone-400 group-hover:text-[#8b7360] transition-colors text-sm">
                       open_in_new
@@ -126,7 +116,9 @@ export function CentreActivitiesTable({
                 {/* Mobile: Show day/time inline */}
                 <p className="text-xs text-stone-400 lg:hidden mt-1">
                   {activity.days_of_week && (
-                    <span className="font-semibold">{activity.days_of_week}</span>
+                    <span className="font-semibold">
+                      {activity.days_of_week}
+                    </span>
                   )}
                   {activity.days_of_week && activity.time_range && (
                     <span> • </span>
@@ -170,7 +162,8 @@ export function CentreActivitiesTable({
 
               {/* Column 5: Openings */}
               <div className="col-span-2 flex justify-start lg:justify-end">
-                {activity.openings !== undefined && activity.openings !== null ? (
+                {activity.openings !== undefined &&
+                activity.openings !== null ? (
                   activity.openings > 0 ? (
                     <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 text-green-700 text-sm font-semibold">
                       <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>

@@ -9,7 +9,7 @@ export function NavigationHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
           <Link
@@ -19,13 +19,13 @@ export function NavigationHeader() {
             <div className="w-10 h-10 bg-[#8b7360] rounded-lg flex items-center justify-center">
               <span className="text-white text-xl font-bold">TP</span>
             </div>
-            <span className="text-xl font-semibold text-gray-900">
+            <span className="hidden md:inline text-xl font-semibold text-gray-900">
               Third Places: Centres
             </span>
           </Link>
 
           {/* Navigation Buttons */}
-          <nav className="flex items-center gap-4">
+          <nav className="flex items-center gap-2 sm:gap-4">
             <Link
               href="/activities"
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${

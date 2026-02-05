@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react";
 import type { AggregatedActivity } from "@/lib/schemas/activity";
 import { ActivitySidebar } from "./ActivitySidebar";
+import { MobileFilterButton } from "./MobileFilterButton";
+import { MobileActivitiesFilterDrawer } from "./MobileActivitiesFilterDrawer";
 import { PopularActivities } from "./PopularActivities";
 import { ActivityCard } from "./ActivityCard";
 
@@ -13,6 +15,7 @@ interface ActivityListViewProps {
 export function ActivityListView({ activities }: ActivityListViewProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Filter activities based on search and category
   const filteredActivities = useMemo(() => {
@@ -36,16 +39,35 @@ export function ActivityListView({ activities }: ActivityListViewProps) {
     return filtered;
   }, [activities, searchQuery, selectedCategory]);
 
+  // Calculate active filters count
+  const activeFiltersCount = searchQuery ? 1 : 0;
+
   return (
-    <div className="flex max-w-screen-2xl mx-auto mt-8">
-      {/* Sidebar */}
-      <ActivitySidebar
+    <>
+      {/* Mobile Filter Button */}
+      <MobileFilterButton
+        onClick={() => setMobileFiltersOpen(true)}
+        activeFiltersCount={activeFiltersCount}
+      />
+
+      {/* Mobile Filter Drawer */}
+      <MobileActivitiesFilterDrawer
+        open={mobileFiltersOpen}
+        onOpenChange={setMobileFiltersOpen}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
 
-      {/* Main content */}
-      <main className="flex-1 min-w-0 px-8">
+      <div className="flex flex-col lg:flex-row max-w-screen-2xl mx-auto mt-6 sm:mt-8">
+        {/* Sidebar */}
+        <ActivitySidebar
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          className="hidden lg:block"
+        />
+
+        {/* Main content */}
+        <main className="flex-1 min-w-0 px-0 lg:px-8">
         {/* <PopularActivities
           activities={activities}
           selectedCategory={selectedCategory}
@@ -83,5 +105,6 @@ export function ActivityListView({ activities }: ActivityListViewProps) {
         </div>
       </main>
     </div>
+    </>
   );
 }
