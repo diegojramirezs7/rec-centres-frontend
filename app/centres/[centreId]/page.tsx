@@ -1,67 +1,110 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import {
   getCentreById,
   getCentreActivities,
 } from "@/lib/api/endpoints/centres";
 import { CentreDetailsHeader } from "@/app/components/CentreDetailsHeader";
 import { CentreDetailsContent } from "@/app/components/CentreDetailsContent";
+import type { CommunityCentre } from "@/lib/schemas/centre";
+import type { NormalizedActivity } from "@/lib/schemas/activity";
 
-interface PageProps {
-  params: Promise<{ centreId: string }>;
-}
+export default function CentreDetailsPage() {
+  const params = useParams();
+  const centreId = params.centreId as string;
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  try {
-    const { centreId } = await params;
-    const centre = await getCentreById(centreId);
+  // State for data
+  const [centre, setCentre] = useState<CommunityCentre | null>(null);
+  const [activities, setActivities] = useState<NormalizedActivity[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-    return {
-      title: `${centre.name} - Third Places Vancouver`,
-      description: `Discover activities at ${centre.name}, located at ${centre.address}`,
-    };
-  } catch (error) {
-    return {
-      title: "Centre Not Found - Third Places Vancouver",
-      description:
-        "The community centre you're looking for could not be found.",
-    };
-  }
-}
+  // Filter state
+  const [ageFilter, setAgeFilter] = useState("");
+  const [dateRange, setDateRange] = useState("all");
+  const [showAvailableOnly, setShowAvailableOnly] = useState(false);
 
-export default async function CentreDetailsPage({ params }: PageProps) {
-  try {
-    const { centreId } = await params;
+  // Fetch data on mount
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const [centreData, activitiesData] = await Promise.all([
+          getCentreById(centreId),
+          getCentreActivities(centreId),
+        ]);
+        setCentre(centreData);
+        setActivities(activitiesData);
+        setError(null);
+      } catch (err) {
+        setError("Failed to load centre details");
+        console.error("Error fetching centre details:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-    // Fetch centre details and activities in parallel
-    const [centre, activities] = await Promise.all([
-      getCentreById(centreId, { next: { revalidate: 3600 } }),
-      getCentreActivities(centreId, { next: { revalidate: 3600 } }),
-    ]);
+    if (centreId) {
+      fetchData();
+    }
+  }, [centreId]);
 
-    // Calculate total activities across all groups
-    const totalActivities = activities.reduce(
-      (sum, group) => sum + group.total,
-      0,
-    );
-
+  if (loading) {
     return (
-      <main className="max-w-7xl mx-auto px-6 py-12">
-        {/* Header Section */}
-        <CentreDetailsHeader
-          centreName={centre.name}
-          address={centre.address}
-          totalActivities={totalActivities}
-        />
-
-        {/* Main Content with Sidebar and Activity List */}
-        <CentreDetailsContent centre={centre} activities={activities} />
-      </main>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="text-2xl text-stone-500">Loading...</div>
+        </div>
+      </div>
     );
-  } catch (error) {
-    // If centre not found or error occurred, show 404
-    notFound();
   }
+
+  if (error || !centre) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <h1 className="text-2xl font-serif text-stone-900 mb-4">
+            Centre Not Found
+          </h1>
+          <p className="text-stone-500">
+            {error || "The community centre you're looking for could not be found."}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Calculate total activities
+  const totalActivities = activities.reduce(
+    (sum, group) => sum + group.total,
+    0,
+  );
+
+  return (
+    <main>
+      {/* Header Section */}
+      <CentreDetailsHeader
+        centreName={centre.name}
+        address={centre.address}
+        totalActivities={totalActivities}
+        dateRange={dateRange}
+        onDateRangeChange={setDateRange}
+        ageFilter={ageFilter}
+        onAgeFilterChange={setAgeFilter}
+        showAvailableOnly={showAvailableOnly}
+        onShowAvailableOnlyChange={setShowAvailableOnly}
+      />
+
+      {/* Main Content */}
+      <CentreDetailsContent
+        centre={centre}
+        activities={activities}
+        ageFilter={ageFilter}
+        dateRange={dateRange}
+        showAvailableOnly={showAvailableOnly}
+      />
+    </main>
+  );
 }

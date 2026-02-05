@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { NavigationHeader } from "./components/NavigationHeader";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,7 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Find Your Community Centre | Third Places Vancouver",
+  title: "Community Centres | Third Places Vancouver",
   description: "Discover local spaces to connect, learn, and grow across Vancouver.",
 };
 
@@ -42,6 +43,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} ${geistMono.variable} antialiased`}
       >
+        <NavigationHeader />
         <Providers>{children}</Providers>
       </body>
     </html>

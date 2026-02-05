@@ -1,19 +1,14 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import type { GeolocationError } from "@/lib/types/geolocation";
 
-interface ActivityDetailsFiltersProps {
+interface CentreDetailsFiltersProps {
   dateRange: string;
   onDateRangeChange: (range: string) => void;
   ageFilter: string;
   onAgeFilterChange: (age: string) => void;
   showAvailableOnly: boolean;
   onShowAvailableOnlyChange: (show: boolean) => void;
-  closeToMe: boolean;
-  onCloseToMeChange: (value: boolean) => void;
-  loading: boolean;
-  error: GeolocationError | null;
 }
 
 const DATE_RANGE_OPTIONS = [
@@ -23,18 +18,14 @@ const DATE_RANGE_OPTIONS = [
   { value: "next-month", label: "Next Month" },
 ];
 
-export function ActivityDetailsFilters({
+export function CentreDetailsFilters({
   dateRange,
   onDateRangeChange,
   ageFilter,
   onAgeFilterChange,
   showAvailableOnly,
   onShowAvailableOnlyChange,
-  closeToMe,
-  onCloseToMeChange,
-  loading,
-  error,
-}: ActivityDetailsFiltersProps) {
+}: CentreDetailsFiltersProps) {
   const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
   const [isAgeInputOpen, setIsAgeInputOpen] = useState(false);
   const dateDropdownRef = useRef<HTMLDivElement>(null);
@@ -179,37 +170,6 @@ export function ActivityDetailsFilters({
           {showAvailableOnly ? "check_circle" : "radio_button_unchecked"}
         </span>
         <span>Has Openings</span>
-      </button>
-
-      {/* Close to Me Toggle */}
-      <button
-        onClick={() => onCloseToMeChange(!closeToMe)}
-        disabled={loading}
-        className={`flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium transition-all border ${
-          closeToMe
-            ? "bg-[#8b7360] border-[#8b7360] text-white"
-            : error
-              ? "bg-white border-red-300 text-stone-700 hover:border-red-400"
-              : "bg-white border-gray-200 text-stone-700 hover:border-[#8b7360]"
-        } ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
-        aria-label={
-          loading
-            ? "Requesting your location..."
-            : closeToMe
-              ? "Currently showing nearest sessions first"
-              : "Sort sessions by proximity"
-        }
-        aria-checked={closeToMe}
-        role="switch"
-      >
-        <span className="material-symbols-outlined text-sm">
-          {loading
-            ? "progress_activity"
-            : closeToMe
-              ? "location_on"
-              : "near_me"}
-        </span>
-        <span>Close to Me</span>
       </button>
     </div>
   );

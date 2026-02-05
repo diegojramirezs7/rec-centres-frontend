@@ -1,16 +1,10 @@
-import { getCentres, getNormalizedActivities } from "@/lib/api/endpoints";
-import { HomeContent } from "./components/HomeContent";
+import { getCentres } from "@/lib/api/endpoints";
+import { CentresContent } from "./components/CentresContent";
 
 export default async function Home() {
-  // Fetch both centres and activities in parallel
-  const [centres, activities] = await Promise.all([
-    getCentres({
-      next: { revalidate: 3600 },
-    }),
-    getNormalizedActivities({
-      next: { revalidate: 3600 },
-    }),
-  ]);
+  const centres = await getCentres({
+    next: { revalidate: 3600 },
+  });
 
-  return <HomeContent centres={centres} activities={activities} />;
+  return <CentresContent centres={centres} />;
 }
