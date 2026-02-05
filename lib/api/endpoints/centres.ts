@@ -52,3 +52,14 @@ export async function getCentreActivityDetails(
     options,
   );
 }
+
+export async function getAllCentreActivities(
+  centreId: string,
+  options?: FetchOptions,
+) {
+  return api.get(
+    `/centres/${centreId}/activities`,
+    z.array(activitySchema),
+    options,
+  );
+}

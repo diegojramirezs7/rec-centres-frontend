@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Centre Activities - Third Places Vancouver</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#A68971",
+              "background-light": "#F8F5F0",
+              "background-dark": "#1A1917",
+              "card-light": "#FFFFFF",
+              "card-dark": "#252422",
+            },
+            fontFamily: {
+              display: ["Fraunces", "serif"],
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "12px",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        overflow-x: hidden;
+      }
+      .display-font {
+        font-family: "Fraunces", serif;
+      }
+      .activity-scroll-area::-webkit-scrollbar {
+        width: 6px;
+      }
+      .activity-scroll-area::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .activity-scroll-area::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 10px;
+      }
+      .dark .activity-scroll-area::-webkit-scrollbar-thumb {
+        background: #334155;
+      }
+      .combobox-container:focus-within {
+        @apply ring-2 ring-primary border-primary;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 min-h-screen flex flex-col"
+  >
+    <nav
+      class="bg-white dark:bg-card-dark border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 shrink-0"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center gap-3">
+            <img
+              alt="Third Places Logo"
+              class="h-8 w-8"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG80J2iuvEjJR7gPfFkSj8YkhW4-qhbjRhk_KWU2n5GdsRsjMMXNmLdes7i2LUa1ziIWxqNYs-RHyoksDNb2gebNpVBML03QJYKubozXhafcESX2y_dIbGiJStJbjA0CYbxamT3kBQhgrdBYCRh9SeTnaYcOLA46HAklWAYi4urvGRyTqUsmWj2zGxBve2Jeq7TVmDLEBfsUdNa8RTzuaX_GjzKM60hlkRHM_GV4BsKRU94avrQ0JBiwvw5jv-as04gEabPZVE99T0"
+            />
+            <span
+              class="text-xl font-bold display-font tracking-tight text-slate-900 dark:text-white"
+              >Third Places Vancouver</span
+            >
+          </div>
+          <div class="flex items-center gap-6">
+            <a
+              class="text-sm font-medium hover:text-primary transition-colors"
+              href="#"
+              >About</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+    <header
+      class="bg-white dark:bg-card-dark border-b border-slate-200 dark:border-slate-800 shrink-0"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <nav
+          aria-label="Breadcrumb"
+          class="flex mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400"
+        >
+          <ol class="flex items-center space-x-2">
+            <li><a class="hover:text-primary" href="#">Centres</a></li>
+            <li>
+              <span class="material-symbols-outlined text-sm"
+                >chevron_right</span
+              >
+            </li>
+            <li class="text-slate-900 dark:text-white">Mount Pleasant</li>
+          </ol>
+        </nav>
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8"
+        >
+          <div>
+            <h1
+              class="text-4xl md:text-5xl font-bold display-font text-slate-900 dark:text-white mb-3"
+            >
+              Mount Pleasant Community Centre
+            </h1>
+            <div class="flex items-center text-slate-600 dark:text-slate-400">
+              <span class="material-symbols-outlined mr-2 text-primary"
+                >location_on</span
+              >
+              <span class="text-base">1 Kingsway, Vancouver, BC V5T 3H7</span>
+            </div>
+          </div>
+          <div
+            class="hidden md:flex items-center gap-2 bg-primary/10 text-primary px-5 py-2.5 rounded-full font-bold text-sm"
+          >
+            <span class="material-symbols-outlined text-lg"
+              >event_available</span
+            >
+            142 Sessions Found
+          </div>
+        </div>
+        <div
+          class="flex flex-col lg:flex-row items-stretch lg:items-center gap-4 pt-8 border-t border-slate-100 dark:border-slate-800"
+        >
+          <div class="relative w-full lg:w-32">
+            <label
+              class="absolute -top-2 left-2 px-1 bg-white dark:bg-card-dark text-[10px] font-bold text-slate-400 uppercase tracking-wider z-10"
+              >Age</label
+            >
+            <input
+              class="w-full bg-transparent border-slate-200 dark:border-slate-700 rounded-lg text-sm px-3 py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+              placeholder="Years"
+              type="number"
+              value="28"
+            />
+          </div>
+          <div class="relative w-full lg:w-48">
+            <label
+              class="absolute -top-2 left-2 px-1 bg-white dark:bg-card-dark text-[10px] font-bold text-slate-400 uppercase tracking-wider z-10"
+              >Date Range</label
+            >
+            <select
+              class="w-full bg-transparent border-slate-200 dark:border-slate-700 rounded-lg text-sm px-3 py-2.5 focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
+            >
+              <option>Next 7 Days</option>
+              <option>This Month</option>
+              <option>Fall 2024</option>
+            </select>
+            <span
+              class="material-symbols-outlined absolute right-3 top-2.5 text-slate-400 pointer-events-none"
+              >expand_more</span
+            >
+          </div>
+          <div class="relative flex-grow min-w-0">
+            <label
+              class="absolute -top-2 left-2 px-1 bg-white dark:bg-card-dark text-[10px] font-bold text-slate-400 uppercase tracking-wider z-10"
+              >Activity Types</label
+            >
+            <div
+              class="combobox-container min-h-[42px] w-full flex flex-wrap items-center gap-2 bg-transparent border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1.5 transition-all cursor-text"
+            >
+              <div
+                class="flex items-center gap-1.5 bg-primary/10 border border-primary/20 text-primary px-2 py-1 rounded-md text-xs font-bold"
+              >
+                Basketball
+                <button class="hover:text-primary/70 flex items-center">
+                  <span class="material-symbols-outlined text-sm leading-none"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <div
+                class="flex items-center gap-1.5 bg-primary/10 border border-primary/20 text-primary px-2 py-1 rounded-md text-xs font-bold"
+              >
+                Yoga
+                <button class="hover:text-primary/70 flex items-center">
+                  <span class="material-symbols-outlined text-sm leading-none"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <input
+                class="flex-grow min-w-[150px] bg-transparent border-none p-0 text-sm focus:ring-0 focus:outline-none placeholder:text-slate-400"
+                placeholder="Search or select activities..."
+                type="text"
+              />
+              <span class="material-symbols-outlined text-slate-400 ml-auto"
+                >expand_more</span
+              >
+            </div>
+          </div>
+          <label
+            class="flex items-center gap-3 cursor-pointer bg-slate-50 dark:bg-slate-800/50 px-4 py-2.5 rounded-lg border border-slate-100 dark:border-slate-800 shrink-0"
+          >
+            <input checked="" class="sr-only peer" type="checkbox" />
+            <div
+              class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary relative"
+            ></div>
+            <span
+              class="text-sm font-semibold text-slate-600 dark:text-slate-300 whitespace-nowrap"
+              >Available only</span
+            >
+          </label>
+        </div>
+      </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+      <div
+        class="bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm"
+      >
+        <div
+          class="hidden lg:grid grid-cols-12 gap-4 px-8 py-4 bg-slate-50/50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800"
+        >
+          <div
+            class="col-span-4 text-[10px] font-bold uppercase tracking-widest text-slate-400"
+          >
+            Activity &amp; Session
+          </div>
+          <div
+            class="col-span-2 text-[10px] font-bold uppercase tracking-widest text-slate-400"
+          >
+            Day &amp; Time
+          </div>
+          <div
+            class="col-span-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 text-center"
+          >
+            Age Group
+          </div>
+          <div
+            class="col-span-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 text-center"
+          >
+            Date Range
+          </div>
+          <div
+            class="col-span-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 text-right"
+          >
+            Status
+          </div>
+        </div>
+        <div class="divide-y divide-slate-100 dark:divide-slate-800">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center px-8 py-6 hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors"
+          >
+            <div class="col-span-4 flex items-center gap-4">
+              <div
+                class="w-10 h-10 shrink-0 rounded-lg bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-2xl"
+                  >sports_basketball</span
+                >
+              </div>
+              <div>
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-orange-600 dark:text-orange-400 mb-0.5 block"
+                  >Basketball</span
+                >
+                <h4
+                  class="font-bold text-lg text-slate-900 dark:text-white display-font"
+                >
+                  Adult Open Gym
+                </h4>
+              </div>
+            </div>
+            <div class="col-span-2">
+              <div class="flex flex-col">
+                <span
+                  class="text-sm font-bold text-slate-700 dark:text-slate-200"
+                  >Tuesdays</span
+                >
+                <span class="text-xs text-slate-500">6:00 PM - 8:00 PM</span>
+              </div>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span
+                class="text-[10px] font-bold px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md text-slate-600 dark:text-slate-400 uppercase tracking-tighter"
+                >Adult (19+)</span
+              >
+            </div>
+            <div class="col-span-2 flex flex-col items-center">
+              <span
+                class="text-xs font-medium text-slate-600 dark:text-slate-400"
+                >Oct 24 - Dec 15</span
+              >
+              <span
+                class="text-[10px] text-slate-400 uppercase tracking-tighter"
+                >8 Sessions</span
+              >
+            </div>
+            <div class="col-span-2 text-right">
+              <div
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-bold"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                12 spots left
+              </div>
+            </div>
+          </div>
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center px-8 py-6 hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors"
+          >
+            <div class="col-span-4 flex items-center gap-4">
+              <div
+                class="w-10 h-10 shrink-0 rounded-lg bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-2xl"
+                  >self_improvement</span
+                >
+              </div>
+              <div>
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400 mb-0.5 block"
+                  >Yoga &amp; Mindfulness</span
+                >
+                <h4
+                  class="font-bold text-lg text-slate-900 dark:text-white display-font"
+                >
+                  Hatha Flow for Beginners
+                </h4>
+              </div>
+            </div>
+            <div class="col-span-2">
+              <div class="flex flex-col">
+                <span
+                  class="text-sm font-bold text-slate-700 dark:text-slate-200"
+                  >Wednesdays</span
+                >
+                <span class="text-xs text-slate-500">5:15 PM - 6:30 PM</span>
+              </div>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span
+                class="text-[10px] font-bold px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md text-slate-600 dark:text-slate-400 uppercase tracking-tighter"
+                >All Ages</span
+              >
+            </div>
+            <div class="col-span-2 flex flex-col items-center">
+              <span
+                class="text-xs font-medium text-slate-600 dark:text-slate-400"
+                >Oct 25 - Dec 20</span
+              >
+              <span
+                class="text-[10px] text-slate-400 uppercase tracking-tighter"
+                >9 Sessions</span
+              >
+            </div>
+            <div class="col-span-2 text-right">
+              <div
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-bold"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                3 spots left
+              </div>
+            </div>
+          </div>
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center px-8 py-6 hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors"
+          >
+            <div class="col-span-4 flex items-center gap-4">
+              <div
+                class="w-10 h-10 shrink-0 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-2xl">palette</span>
+              </div>
+              <div>
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-0.5 block"
+                  >Visual Arts</span
+                >
+                <h4
+                  class="font-bold text-lg text-slate-900 dark:text-white display-font"
+                >
+                  Intro to Watercolor
+                </h4>
+              </div>
+            </div>
+            <div class="col-span-2">
+              <div class="flex flex-col">
+                <span
+                  class="text-sm font-bold text-slate-700 dark:text-slate-200"
+                  >Thursdays</span
+                >
+                <span class="text-xs text-slate-500">7:00 PM - 9:00 PM</span>
+              </div>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span
+                class="text-[10px] font-bold px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md text-slate-600 dark:text-slate-400 uppercase tracking-tighter"
+                >Adult (19+)</span
+              >
+            </div>
+            <div class="col-span-2 flex flex-col items-center">
+              <span
+                class="text-xs font-medium text-slate-600 dark:text-slate-400"
+                >Oct 26 - Nov 30</span
+              >
+              <span
+                class="text-[10px] text-slate-400 uppercase tracking-tighter"
+                >6 Sessions</span
+              >
+            </div>
+            <div class="col-span-2 text-right">
+              <div
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 text-xs font-bold"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                1 spot left
+              </div>
+            </div>
+          </div>
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center px-8 py-6 hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors"
+          >
+            <div class="col-span-4 flex items-center gap-4">
+              <div
+                class="w-10 h-10 shrink-0 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-2xl"
+                  >fitness_center</span
+                >
+              </div>
+              <div>
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-0.5 block"
+                  >Fitness &amp; Gym</span
+                >
+                <h4
+                  class="font-bold text-lg text-slate-900 dark:text-white display-font"
+                >
+                  High-Intensity Circuit
+                </h4>
+              </div>
+            </div>
+            <div class="col-span-2">
+              <div class="flex flex-col">
+                <span
+                  class="text-sm font-bold text-slate-700 dark:text-slate-200"
+                  >Fridays</span
+                >
+                <span class="text-xs text-slate-500">6:30 AM - 7:30 AM</span>
+              </div>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span
+                class="text-[10px] font-bold px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md text-slate-600 dark:text-slate-400 uppercase tracking-tighter"
+                >Adult (19+)</span
+              >
+            </div>
+            <div class="col-span-2 flex flex-col items-center">
+              <span
+                class="text-xs font-medium text-slate-600 dark:text-slate-400"
+                >Year Round</span
+              >
+              <span
+                class="text-[10px] text-slate-400 uppercase tracking-tighter"
+                >Drop-in</span
+              >
+            </div>
+            <div class="col-span-2 text-right">
+              <div
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-bold"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                20+ spots
+              </div>
+            </div>
+          </div>
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center px-8 py-6 hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors"
+          >
+            <div class="col-span-4 flex items-center gap-4">
+              <div
+                class="w-10 h-10 shrink-0 rounded-lg bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-2xl"
+                  >sports_basketball</span
+                >
+              </div>
+              <div>
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-orange-600 dark:text-orange-400 mb-0.5 block"
+                  >Basketball</span
+                >
+                <h4
+                  class="font-bold text-lg text-slate-900 dark:text-white display-font"
+                >
+                  Youth Skills Academy
+                </h4>
+              </div>
+            </div>
+            <div class="col-span-2">
+              <div class="flex flex-col">
+                <span
+                  class="text-sm font-bold text-slate-700 dark:text-slate-200"
+                  >Saturdays</span
+                >
+                <span class="text-xs text-slate-500">9:00 AM - 10:30 AM</span>
+              </div>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span
+                class="text-[10px] font-bold px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md text-slate-600 dark:text-slate-400 uppercase tracking-tighter"
+                >Teens (13-18)</span
+              >
+            </div>
+            <div class="col-span-2 flex flex-col items-center">
+              <span
+                class="text-xs font-medium text-slate-600 dark:text-slate-400"
+                >Oct 28 - Dec 16</span
+              >
+              <span
+                class="text-[10px] text-slate-400 uppercase tracking-tighter"
+                >8 Sessions</span
+              >
+            </div>
+            <div class="col-span-2 text-right">
+              <div
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-bold"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                Full
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="p-8 text-center bg-slate-50/30 dark:bg-slate-900/20 border-t border-slate-100 dark:border-slate-800"
+        >
+          <button
+            class="px-6 py-2.5 bg-white dark:bg-card-dark border border-slate-200 dark:border-slate-700 rounded-full text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-sm"
+          >
+            View more sessions
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

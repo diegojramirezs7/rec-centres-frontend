@@ -1,12 +1,13 @@
 "use client";
 
-import type { NormalizedActivity } from "@/lib/schemas/activity";
+import { useMemo, useState } from "react";
+import type { Activity } from "@/lib/schemas/activity";
 import type { CommunityCentre } from "@/lib/schemas/centre";
-import { ActivityCategoryCard } from "./ActivityCategoryCard";
+import { CentreActivitiesTable } from "./CentreActivitiesTable";
 
 interface CentreDetailsContentProps {
   centre: CommunityCentre;
-  activities: NormalizedActivity[];
+  activities: Activity[];
   ageFilter: string;
   dateRange: string;
   showAvailableOnly: boolean;
@@ -19,6 +20,98 @@ export function CentreDetailsContent({
   dateRange,
   showAvailableOnly,
 }: CentreDetailsContentProps) {
+  const [sortBy, setSortBy] = useState("activity_type");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+
+  // Filter activities based on user criteria
+  const filteredActivities = useMemo(() => {
+    return activities.filter((activity) => {
+      // Age filter
+      if (ageFilter) {
+        const userAge = parseInt(ageFilter);
+        if (!isNaN(userAge)) {
+          const minAge = activity.age_min_year || 0;
+          const maxAge = activity.age_max_year || Infinity;
+          const effectiveMaxAge = maxAge === 0 ? Infinity : maxAge;
+
+          if (userAge < minAge || userAge > effectiveMaxAge) {
+            return false;
+          }
+        }
+      }
+
+      // Date range filter
+      if (dateRange !== "all" && activity.date_range_start) {
+        const sessionStart = new Date(activity.date_range_start);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (dateRange === "next-7-days") {
+          const sevenDaysLater = new Date(today);
+          sevenDaysLater.setDate(today.getDate() + 7);
+          if (sessionStart < today || sessionStart > sevenDaysLater) {
+            return false;
+          }
+        } else if (dateRange === "this-month") {
+          if (
+            sessionStart.getMonth() !== today.getMonth() ||
+            sessionStart.getFullYear() !== today.getFullYear()
+          ) {
+            return false;
+          }
+        } else if (dateRange === "next-month") {
+          const nextMonth = new Date(today);
+          nextMonth.setMonth(today.getMonth() + 1);
+          if (
+            sessionStart.getMonth() !== nextMonth.getMonth() ||
+            sessionStart.getFullYear() !== nextMonth.getFullYear()
+          ) {
+            return false;
+          }
+        }
+      }
+
+      // Availability filter
+      if (showAvailableOnly) {
+        if (
+          activity.openings === null ||
+          activity.openings === undefined ||
+          activity.openings <= 0
+        ) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }, [activities, ageFilter, dateRange, showAvailableOnly]);
+
+  // Handle sort change
+  const handleSortChange = (field: string) => {
+    if (field === sortBy) {
+      // Toggle direction if clicking same field
+      setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      // New field, default to ascending
+      setSortBy(field);
+      setSortDirection("asc");
+    }
+  };
+
+  // Sort activities
+  const sortedActivities = useMemo(() => {
+    const sorted = [...filteredActivities];
+    if (sortBy === "activity_type") {
+      sorted.sort((a, b) => {
+        const typeA = a.normalized_activity_type || "";
+        const typeB = b.normalized_activity_type || "";
+        const comparison = typeA.localeCompare(typeB);
+        return sortDirection === "asc" ? comparison : -comparison;
+      });
+    }
+    return sorted;
+  }, [filteredActivities, sortBy, sortDirection]);
+
   return (
     <div className="max-w-7xl mx-auto px-6">
       {activities.length === 0 ? (
@@ -34,16 +127,13 @@ export function CentreDetailsContent({
           </p>
         </div>
       ) : (
-        <div className="space-y-4">
-          {activities.map((activity, idx) => (
-            <ActivityCategoryCard
-              key={idx}
-              activity={activity}
-              ageFilter={ageFilter}
-              dateRange={dateRange}
-              showAvailableOnly={showAvailableOnly}
-            />
-          ))}
+        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+          <CentreActivitiesTable
+            activities={sortedActivities}
+            sortBy={sortBy}
+            sortDirection={sortDirection}
+            onSortChange={handleSortChange}
+          />
         </div>
       )}
     </div>

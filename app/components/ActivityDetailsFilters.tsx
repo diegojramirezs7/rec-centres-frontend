@@ -37,8 +37,23 @@ export function ActivityDetailsFilters({
 }: ActivityDetailsFiltersProps) {
   const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
   const [isAgeInputOpen, setIsAgeInputOpen] = useState(false);
+  const [localAgeValue, setLocalAgeValue] = useState(ageFilter);
   const dateDropdownRef = useRef<HTMLDivElement>(null);
   const ageDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Sync local age value with prop when it changes externally
+  useEffect(() => {
+    setLocalAgeValue(ageFilter);
+  }, [ageFilter]);
+
+  // Debounce age filter changes
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      onAgeFilterChange(localAgeValue);
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [localAgeValue, onAgeFilterChange]);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -136,8 +151,8 @@ export function ActivityDetailsFilters({
               type="number"
               min="0"
               max="120"
-              value={ageFilter}
-              onChange={(e) => onAgeFilterChange(e.target.value)}
+              value={localAgeValue}
+              onChange={(e) => setLocalAgeValue(e.target.value)}
               placeholder="e.g., 25"
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white text-stone-900 focus:outline-none focus:ring-2 focus:ring-[#8b7360] focus:border-transparent"
               autoFocus
@@ -145,7 +160,7 @@ export function ActivityDetailsFilters({
             <div className="mt-3 flex gap-2">
               <button
                 onClick={() => {
-                  onAgeFilterChange("");
+                  setLocalAgeValue("");
                   setIsAgeInputOpen(false);
                 }}
                 className="flex-1 px-3 py-2 text-sm font-medium text-stone-700 hover:text-stone-900 bg-stone-100 hover:bg-stone-200 rounded-lg transition-colors"

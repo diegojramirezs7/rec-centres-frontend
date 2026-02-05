@@ -125,8 +125,8 @@ export function ActivityDetailsContent({
           distance: calculateDistance(
             coordinates.latitude,
             coordinates.longitude,
-            session.centre_lat,
-            session.centre_lng
+            session.centre_lat ?? 0,
+            session.centre_lng ?? 0
           ),
         }))
         .sort((a, b) => {

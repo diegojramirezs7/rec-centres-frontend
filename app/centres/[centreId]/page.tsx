@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import {
   getCentreById,
-  getCentreActivities,
+  getAllCentreActivities,
 } from "@/lib/api/endpoints/centres";
 import { CentreDetailsHeader } from "@/app/components/CentreDetailsHeader";
 import { CentreDetailsContent } from "@/app/components/CentreDetailsContent";
 import type { CommunityCentre } from "@/lib/schemas/centre";
-import type { NormalizedActivity } from "@/lib/schemas/activity";
+import type { Activity } from "@/lib/schemas/activity";
 
 export default function CentreDetailsPage() {
   const params = useParams();
@@ -17,7 +17,7 @@ export default function CentreDetailsPage() {
 
   // State for data
   const [centre, setCentre] = useState<CommunityCentre | null>(null);
-  const [activities, setActivities] = useState<NormalizedActivity[]>([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +33,7 @@ export default function CentreDetailsPage() {
         setLoading(true);
         const [centreData, activitiesData] = await Promise.all([
           getCentreById(centreId),
-          getCentreActivities(centreId),
+          getAllCentreActivities(centreId),
         ]);
         setCentre(centreData);
         setActivities(activitiesData);
@@ -77,10 +77,7 @@ export default function CentreDetailsPage() {
   }
 
   // Calculate total activities
-  const totalActivities = activities.reduce(
-    (sum, group) => sum + group.total,
-    0,
-  );
+  const totalActivities = activities.length;
 
   return (
     <main>
