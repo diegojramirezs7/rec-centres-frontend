@@ -69,7 +69,9 @@ export default async function ActivityDetailsPage({ params }: PageProps) {
     );
   } catch (error) {
     // If API error or any other error occurred, show 404
-    console.error("Error fetching activity details:", error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error("Error fetching activity details:", error);
+    }
     notFound();
   }
 }

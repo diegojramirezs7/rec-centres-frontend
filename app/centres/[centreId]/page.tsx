@@ -41,7 +41,9 @@ export default function CentreDetailsPage() {
         setError(null);
       } catch (err) {
         setError("Failed to load centre details");
-        console.error("Error fetching centre details:", err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error("Error fetching centre details:", err);
+        }
       } finally {
         setLoading(false);
       }

@@ -10,11 +10,14 @@ function validateEnv() {
   });
 
   if (!parsed.success) {
-    console.error(
-      "Invalid environment variables:",
-      parsed.error.flatten().fieldErrors,
-    );
-    throw new Error("Invalid environment variables");
+    // In production, don't log detailed error information
+    if (process.env.NODE_ENV === 'development') {
+      console.error(
+        "Invalid environment variables:",
+        parsed.error.flatten().fieldErrors,
+      );
+    }
+    throw new Error("Invalid environment variables. Please check your .env configuration.");
   }
 
   return parsed.data;
