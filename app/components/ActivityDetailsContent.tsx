@@ -7,6 +7,7 @@ import { ActivitySessionsList } from "./ActivitySessionsList";
 import { useGeolocation } from "@/lib/hooks/use-geolocation";
 import { calculateDistance } from "@/lib/utils/geolocation";
 import type { GeolocationError } from "@/lib/types/geolocation";
+import { shouldShowActivityInDateFilter } from "@/lib/utils/date-filters";
 
 interface ActivityDetailsContentProps {
   activityName: string;
@@ -73,33 +74,13 @@ export function ActivityDetailsContent({
       }
 
       // Date range filter
-      if (dateRange !== "all" && session.date_range_start) {
-        const sessionStart = new Date(session.date_range_start);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        if (dateRange === "next-7-days") {
-          const sevenDaysLater = new Date(today);
-          sevenDaysLater.setDate(today.getDate() + 7);
-          if (sessionStart < today || sessionStart > sevenDaysLater) {
-            return false;
-          }
-        } else if (dateRange === "this-month") {
-          if (
-            sessionStart.getMonth() !== today.getMonth() ||
-            sessionStart.getFullYear() !== today.getFullYear()
-          ) {
-            return false;
-          }
-        } else if (dateRange === "next-month") {
-          const nextMonth = new Date(today);
-          nextMonth.setMonth(today.getMonth() + 1);
-          if (
-            sessionStart.getMonth() !== nextMonth.getMonth() ||
-            sessionStart.getFullYear() !== nextMonth.getFullYear()
-          ) {
-            return false;
-          }
+      if (dateRange !== "all") {
+        if (!shouldShowActivityInDateFilter(
+          session.date_range_start,
+          session.date_range_end,
+          dateRange
+        )) {
+          return false;
         }
       }
 

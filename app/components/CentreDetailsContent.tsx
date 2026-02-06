@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { Activity } from "@/lib/schemas/activity";
 import type { CommunityCentre } from "@/lib/schemas/centre";
 import { CentreActivitiesTable } from "./CentreActivitiesTable";
+import { shouldShowActivityInDateFilter } from "@/lib/utils/date-filters";
 
 interface CentreDetailsContentProps {
   centre: CommunityCentre;
@@ -53,33 +54,13 @@ export function CentreDetailsContent({
       }
 
       // Date range filter
-      if (dateRange !== "all" && activity.date_range_start) {
-        const sessionStart = new Date(activity.date_range_start);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        if (dateRange === "next-7-days") {
-          const sevenDaysLater = new Date(today);
-          sevenDaysLater.setDate(today.getDate() + 7);
-          if (sessionStart < today || sessionStart > sevenDaysLater) {
-            return false;
-          }
-        } else if (dateRange === "this-month") {
-          if (
-            sessionStart.getMonth() !== today.getMonth() ||
-            sessionStart.getFullYear() !== today.getFullYear()
-          ) {
-            return false;
-          }
-        } else if (dateRange === "next-month") {
-          const nextMonth = new Date(today);
-          nextMonth.setMonth(today.getMonth() + 1);
-          if (
-            sessionStart.getMonth() !== nextMonth.getMonth() ||
-            sessionStart.getFullYear() !== nextMonth.getFullYear()
-          ) {
-            return false;
-          }
+      if (dateRange !== "all") {
+        if (!shouldShowActivityInDateFilter(
+          activity.date_range_start,
+          activity.date_range_end,
+          dateRange
+        )) {
+          return false;
         }
       }
 

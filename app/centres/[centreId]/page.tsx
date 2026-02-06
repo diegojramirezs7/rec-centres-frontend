@@ -41,7 +41,7 @@ export default function CentreDetailsPage() {
         setError(null);
       } catch (err) {
         setError("Failed to load centre details");
-        if (process.env.NODE_ENV === 'development') {
+        if (process.env.NODE_ENV === "development") {
           console.error("Error fetching centre details:", err);
         }
       } finally {
@@ -72,7 +72,8 @@ export default function CentreDetailsPage() {
             Centre Not Found
           </h1>
           <p className="text-stone-500">
-            {error || "The community centre you're looking for could not be found."}
+            {error ||
+              "The community centre you're looking for could not be found."}
           </p>
         </div>
       </div>

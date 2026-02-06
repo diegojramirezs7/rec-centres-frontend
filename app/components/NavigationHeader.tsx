@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 export function NavigationHeader() {
@@ -16,8 +17,14 @@ export function NavigationHeader() {
             href="/"
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            <div className="w-10 h-10 bg-[#8b7360] rounded-lg flex items-center justify-center">
-              <span className="text-white text-xl font-bold">TP</span>
+            <div className="w-12 h-12 p-1.5 rounded-lg overflow-hidden flex items-center justify-center bg-white/50">
+              <Image
+                src="/icon.png"
+                alt="Third Places Logo"
+                width={48}
+                height={48}
+                className="object-contain"
+              />
             </div>
             <span className="hidden md:inline text-xl font-semibold text-gray-900">
               Third Places: Centres
