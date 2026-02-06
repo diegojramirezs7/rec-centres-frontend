@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import type { NormalizedActivity, Activity } from "@/lib/schemas/activity";
 import { getActivityIcon } from "@/lib/constants/activity-icons";
 import { ActivitySessionsTable } from "./ActivitySessionsTable";
@@ -25,7 +26,6 @@ export function ActivityCategoryCard({
   const [error, setError] = useState<string | null>(null);
 
   const iconConfig = getActivityIcon(activity.name);
-  const Icon = iconConfig.icon;
 
   // Fetch session details when card is expanded
   useEffect(() => {
@@ -56,9 +56,14 @@ export function ActivityCategoryCard({
         <div className="flex items-center gap-4">
           {/* Activity Icon */}
           <div
-            className={`w-14 h-14 rounded-xl ${iconConfig.bgColor} ${iconConfig.iconColor} flex items-center justify-center flex-shrink-0`}
+            className={`w-14 h-14 rounded-xl ${iconConfig.bgColor} flex items-center justify-center flex-shrink-0`}
           >
-            <Icon size={32} />
+            <Image
+              src={iconConfig.iconPath}
+              alt={`${activity.name} icon`}
+              width={32}
+              height={32}
+            />
           </div>
 
           {/* Activity Info */}

@@ -24,7 +24,7 @@ async function verifyIconMapping() {
     console.log(`✓ ${withCustomIcon.length} activities with custom icons:`);
     withCustomIcon.forEach((name) => {
       const config = getActivityIcon(name);
-      console.log(`  - ${name} → ${config.bgColor} ${config.iconColor}`);
+      console.log(`  - ${name} → ${config.iconPath}`);
     });
 
     console.log(`\n⚠ ${withDefaultIcon.length} activities using default icon:`);

@@ -125,7 +125,7 @@ export function CentreDetailsContent({
   }, [filteredActivities, sortBy, sortDirection]);
 
   return (
-    <div className="max-w-7xl mx-auto px-6">
+    <div className="max-w-7xl mx-auto px-6 pb-16">
       {activities.length === 0 ? (
         <div className="text-center py-20">
           <span className="material-symbols-outlined text-6xl text-slate-300 mb-4 block">

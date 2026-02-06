@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getActivityIcon } from "@/lib/constants/activity-icons";
 
 // Sample activities from the API
@@ -8,17 +9,15 @@ const testActivities = [
   "Basketball",
   "Soccer",
   "Yoga",
-  "Pilates",
-  "Swimming",
-  "Aquatics",
-  "Pottery",
-  "Ceramics",
-  "Painting",
-  "Cooking",
-  "Music",
-  "Dance",
-  "Photography",
-  "Gardening",
+  "Fitness",
+  "Boxing",
+  "Chess",
+  "Gymnastics",
+  "Hockey",
+  "Tennis",
+  "Volleyball",
+  "Boccia",
+  "Curling",
   "Some Unknown Activity",
 ];
 
@@ -33,7 +32,6 @@ export default function TestIconsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {testActivities.map((activityName) => {
             const iconConfig = getActivityIcon(activityName);
-            const IconComponent = iconConfig.icon;
 
             return (
               <div
@@ -42,16 +40,21 @@ export default function TestIconsPage() {
               >
                 <div className="flex items-center gap-4">
                   <div
-                    className={`w-16 h-16 ${iconConfig.bgColor} ${iconConfig.iconColor} rounded-full flex items-center justify-center shrink-0`}
+                    className={`w-16 h-16 ${iconConfig.bgColor} rounded-full flex items-center justify-center shrink-0`}
                   >
-                    <IconComponent size={32} />
+                    <Image
+                      src={iconConfig.iconPath}
+                      alt={`${activityName} icon`}
+                      width={32}
+                      height={32}
+                    />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-slate-900">
                       {activityName}
                     </h3>
                     <p className="text-xs text-slate-500 mt-1">
-                      {iconConfig.bgColor} / {iconConfig.iconColor}
+                      {iconConfig.bgColor}
                     </p>
                   </div>
                 </div>
@@ -65,7 +68,7 @@ export default function TestIconsPage() {
             Icon Rendering Test Complete
           </h2>
           <ul className="space-y-2 text-sm text-slate-600">
-            <li>✓ Icons load from lucide-react</li>
+            <li>✓ Icons load from SVG files</li>
             <li>✓ Colors apply correctly</li>
             <li>✓ Fallback icon works for unknown activities</li>
             <li>✓ Fuzzy matching works for partial names</li>

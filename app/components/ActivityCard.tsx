@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { AggregatedActivity } from "@/lib/schemas/activity";
 import { getActivityIcon } from "@/lib/constants/activity-icons";
 
@@ -8,7 +9,6 @@ interface ActivityCardProps {
 
 export function ActivityCard({ activity }: ActivityCardProps) {
   const iconConfig = getActivityIcon(activity.name);
-  const IconComponent = iconConfig.icon;
 
   // Format centres display: show first 2, then "and X more"
   const displayCentres = activity.centres.slice(0, 2).join(", ");
@@ -28,9 +28,15 @@ export function ActivityCard({ activity }: ActivityCardProps) {
       <div className="flex items-center gap-4 sm:gap-6 flex-1 min-w-0 w-full">
         {/* Icon */}
         <div
-          className={`w-14 h-14 sm:w-16 sm:h-16 ${iconConfig.bgColor} ${iconConfig.iconColor} rounded-full flex items-center justify-center shrink-0`}
+          className={`w-14 h-14 sm:w-16 sm:h-16 ${iconConfig.bgColor} rounded-full flex items-center justify-center shrink-0`}
         >
-          <IconComponent size={28} className="sm:w-8 sm:h-8" />
+          <Image
+            src={iconConfig.iconPath}
+            alt={`${activity.name} icon`}
+            width={32}
+            height={32}
+            className="w-7 h-7 sm:w-8 sm:h-8"
+          />
         </div>
 
         {/* Content */}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getActivityIcon } from "@/lib/constants/activity-icons";
 
 interface ActivityTypeLabelProps {
@@ -10,8 +11,8 @@ export function ActivityTypeLabel({
   size = "sm",
 }: ActivityTypeLabelProps) {
   const iconConfig = getActivityIcon(activityType);
-  const Icon = iconConfig.icon;
 
+  const iconSize = size === "sm" ? 14 : 16;
   const iconSizeClass = size === "sm" ? "w-3.5 h-3.5" : "w-4 h-4";
   const textSizeClass =
     size === "sm" ? "text-[10px]" : "text-xs";
@@ -21,7 +22,13 @@ export function ActivityTypeLabel({
     <div
       className={`inline-flex items-center gap-1.5 ${paddingClass} rounded-md ${iconConfig.bgColor}`}
     >
-      <Icon className={`${iconSizeClass} ${iconConfig.iconColor} flex-shrink-0`} />
+      <Image
+        src={iconConfig.iconPath}
+        alt={`${activityType} icon`}
+        width={iconSize}
+        height={iconSize}
+        className={`${iconSizeClass} flex-shrink-0`}
+      />
       <span
         className={`${textSizeClass} font-bold uppercase tracking-wider ${iconConfig.iconColor}`}
       >
