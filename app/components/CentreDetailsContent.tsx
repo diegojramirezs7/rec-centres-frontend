@@ -55,11 +55,13 @@ export function CentreDetailsContent({
 
       // Date range filter
       if (dateRange !== "all") {
-        if (!shouldShowActivityInDateFilter(
-          activity.date_range_start,
-          activity.date_range_end,
-          dateRange
-        )) {
+        if (
+          !shouldShowActivityInDateFilter(
+            activity.date_range_start,
+            activity.date_range_end,
+            dateRange,
+          )
+        ) {
           return false;
         }
       }

@@ -45,7 +45,7 @@ export function ActivityDetailsHeader({
             <ol className="flex items-center space-x-2">
               <li>
                 <Link
-                  href="/"
+                  href="/activities"
                   className="hover:text-[#8b7360] transition-colors"
                 >
                   Activities
