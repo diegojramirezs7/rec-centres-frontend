@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { api } from "../client";
 import {
-  normalizedActivityNameSchema,
   aggregatedActivitySchema,
   activitySchema,
 } from "@/lib/schemas/activity";
@@ -14,17 +13,17 @@ export async function getNormalizedActivities(options?: FetchOptions) {
   return api.get(
     "/normalized-activities",
     z.array(aggregatedActivitySchema),
-    options
+    options,
   );
 }
 
 export async function getActivitiesByName(
   name: string,
-  options?: FetchOptions
+  options?: FetchOptions,
 ) {
   return api.get(
     `/activities/${encodeURIComponent(name)}`,
     z.array(activitySchema),
-    options
+    options,
   );
 }
