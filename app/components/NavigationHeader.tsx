@@ -17,18 +17,23 @@ export function NavigationHeader() {
             href="/"
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            <div className="w-12 h-12 p-1.5 rounded-lg overflow-hidden flex items-center justify-center bg-white/50">
-              <Image
-                src="/icon.png"
-                alt="Third Places Logo"
-                width={48}
-                height={48}
-                className="object-contain"
-              />
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center">
+                <Image
+                  src="/icon.png"
+                  alt="Third Places Logo"
+                  width={48}
+                  height={48}
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold tracking-tight text-text-primary">
+                  ThirdPlaces
+                </h1>
+                <p className="text-text-muted text-sm">Vancouver Rec Centres</p>
+              </div>
             </div>
-            <span className="hidden md:inline text-xl font-semibold text-gray-900">
-              Third Places: Centres
-            </span>
           </Link>
 
           {/* Navigation Buttons */}
@@ -38,14 +43,14 @@ export function NavigationHeader() {
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 isActivitiesPage
                   ? "bg-[#8b7360] text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  : "bg-[#8b7360]/10 text-text-primary hover:bg-[#8b7360]/20"
               }`}
             >
               Activities
             </Link>
             <Link
               href="/about"
-              className="text-gray-600 hover:text-[#8b7360] transition-colors font-medium"
+              className="text-text-primary hover:text-[#8b7360] transition-colors font-medium"
             >
               About
             </Link>
