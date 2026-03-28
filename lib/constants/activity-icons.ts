@@ -99,6 +99,11 @@ const activityIconMap: Record<string, ActivityIconConfig> = {
     bgColor: "bg-blue-100",
     iconColor: "text-blue-600",
   },
+  kayaking: {
+    iconPath: "/icons/kayak.svg",
+    bgColor: "bg-cyan-100",
+    iconColor: "text-cyan-600",
+  },
   "lawn bowling": {
     iconPath: "/icons/bowling.svg",
     bgColor: "bg-emerald-100",
@@ -118,6 +123,11 @@ const activityIconMap: Record<string, ActivityIconConfig> = {
     iconPath: "/icons/open-gym.svg",
     bgColor: "bg-slate-100",
     iconColor: "text-slate-600",
+  },
+  outing: {
+    iconPath: "/icons/outing.svg",
+    bgColor: "bg-green-100",
+    iconColor: "text-green-600",
   },
   pickleball: {
     iconPath: "/icons/pickleball.svg",
