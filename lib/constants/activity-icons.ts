@@ -124,6 +124,11 @@ const activityIconMap: Record<string, ActivityIconConfig> = {
     bgColor: "bg-slate-100",
     iconColor: "text-slate-600",
   },
+  other: {
+    iconPath: "/icons/other.svg",
+    bgColor: "bg-slate-100",
+    iconColor: "text-slate-600",
+  },
   outing: {
     iconPath: "/icons/outing.svg",
     bgColor: "bg-green-100",
@@ -148,6 +153,11 @@ const activityIconMap: Record<string, ActivityIconConfig> = {
     iconPath: "/icons/card.svg",
     bgColor: "bg-blue-100",
     iconColor: "text-blue-600",
+  },
+  swimming: {
+    iconPath: "/icons/swimming.svg",
+    bgColor: "bg-cyan-100",
+    iconColor: "text-cyan-600",
   },
   "table tennis": {
     iconPath: "/icons/table-tennis.svg",
@@ -180,7 +190,7 @@ const activityIconMap: Record<string, ActivityIconConfig> = {
  * Default icon configuration for activities not in the map
  */
 const defaultActivityIcon: ActivityIconConfig = {
-  iconPath: "/icons/card.svg",
+  iconPath: "/icons/other.svg",
   bgColor: "bg-slate-100",
   iconColor: "text-slate-600",
 };
