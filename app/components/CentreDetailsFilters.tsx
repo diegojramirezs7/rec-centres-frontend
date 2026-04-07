@@ -62,7 +62,7 @@ export function CentreDetailsFilters({
     return availableActivityTypes.filter(
       (type) =>
         !activityTypeFilter.includes(type) &&
-        type.toLowerCase().includes(searchTerm)
+        type.toLowerCase().includes(searchTerm),
     );
   }, [availableActivityTypes, activityTypeFilter, activityTypeInput]);
 
@@ -124,18 +124,16 @@ export function CentreDetailsFilters({
   };
 
   const handleRemoveActivityType = (type: string) => {
-    onActivityTypeFilterChange(
-      activityTypeFilter.filter((t) => t !== type)
-    );
+    onActivityTypeFilterChange(activityTypeFilter.filter((t) => t !== type));
   };
 
   const handleActivityTypeKeyDown = (
-    e: React.KeyboardEvent<HTMLInputElement>
+    e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     if (e.key === "ArrowDown") {
       e.preventDefault();
       setHighlightedIndex((prev) =>
-        prev < filteredOptions.length - 1 ? prev + 1 : prev
+        prev < filteredOptions.length - 1 ? prev + 1 : prev,
       );
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
@@ -147,7 +145,7 @@ export function CentreDetailsFilters({
       e.preventDefault();
       if (activityTypeFilter.length > 0) {
         handleRemoveActivityType(
-          activityTypeFilter[activityTypeFilter.length - 1]
+          activityTypeFilter[activityTypeFilter.length - 1],
         );
       }
     } else if (e.key === "Escape") {
