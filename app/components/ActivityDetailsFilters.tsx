@@ -124,7 +124,7 @@ export function ActivityDetailsFilters({
       <div className="relative" ref={ageDropdownRef}>
         <button
           onClick={() => setIsAgeInputOpen(!isAgeInputOpen)}
-          className={`flex items-center space-x-2 bg-white border px-4 py-2 rounded-full transition-all text-sm font-medium ${
+          className={`flex items-center space-x-2 bg-white border px-4 py-2 rounded-full transition-all text-sm font-medium min-w-max ${
             ageFilter
               ? "border-[#8b7360] bg-[#8b7360]/10"
               : "border-gray-200 hover:border-[#8b7360]"
@@ -133,7 +133,7 @@ export function ActivityDetailsFilters({
           aria-expanded={isAgeInputOpen}
         >
           <span className="material-symbols-outlined text-sm">person</span>
-          <span>{ageFilter || "All Ages"}</span>
+          <span className="min-w-[52px]">{ageFilter || "All Ages"}</span>
           <span className="material-symbols-outlined text-sm">expand_more</span>
         </button>
 
